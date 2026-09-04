@@ -446,6 +446,14 @@ public class BlastStoveBlockEntity extends FluidTankBlockEntity implements IHave
                         be.getControllerBE().refreshCapability();
 
 
+                    // Capabilities.FluidHandler.BLOCK is declared
+                    // BlockCapability<IFluidHandler, @Nullable Direction>, so a side-agnostic
+                    // lookup - a probe overlay, or any mod calling getCapability without a face -
+                    // arrives here with no direction. This multiblock answers with a different
+                    // handler per face, so there is none to give.
+                    if (context == null)
+                        return null;
+
                     if (context.getAxis() == Direction.Axis.Y) {
                         return be.getControllerBE().primaryCapability;
                     } else if (be.getController().getY() == be.getBlockPos().getY()) {
