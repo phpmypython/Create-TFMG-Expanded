@@ -119,6 +119,7 @@ public class TFMGTags {
 
         CREOSOTE(COMMON),
         FURNACE_GAS(COMMON),
+        SOUR_GAS(COMMON),
 
         LPG(COMMON),
         HEAVY_OIL(COMMON),

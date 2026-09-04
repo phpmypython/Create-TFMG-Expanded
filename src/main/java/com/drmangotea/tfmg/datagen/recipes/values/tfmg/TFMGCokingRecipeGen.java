@@ -19,14 +19,14 @@ public class TFMGCokingRecipeGen extends CokingRecipeGen {
 	COAL_COKE = create(TFMG.asResource("coal"), b ->b
 			.require(Items.COAL)
 			.output(TFMGFluids.CREOSOTE.get(), 1)
-			.output(TFMGFluids.CARBON_DIOXIDE.get(), 30)
+			.output(TFMGFluids.SOUR_GAS.get(), 4)
 			.output(TFMGItems.COAL_COKE)
 			.duration(20*60)),
 
 	CHARCOAL = create(TFMG.asResource("charcoal"), b ->b
 			.require(log())
 			.output(TFMGFluids.CREOSOTE.get(), 2)
-			.output(TFMGFluids.CARBON_DIOXIDE.get(), 20)
+			.output(TFMGFluids.FURNACE_GAS.get(), 20)
 			.output(Items.CHARCOAL)
 			.duration(20*30));
 ;

@@ -253,7 +253,7 @@ public class MetallurgyScenes {
 
         scene.overlay().showText(70)
                 .attachKeyFrame()
-                .text("Carbon Dioxide is extracted at the top, Creosote can be extracted anywhere else")
+                .text("Sour Gas is extracted at the top, Creosote from any other face. The Sour Gas carries the coal's sulfur: recover it in a Chemical Vat instead of flaring it")
                 .pointAt(util.vector().blockSurface(util.grid().at(3, 4, 2), Direction.WEST))
                 .placeNearTarget();
 

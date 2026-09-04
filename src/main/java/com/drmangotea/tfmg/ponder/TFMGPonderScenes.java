@@ -1,9 +1,11 @@
 package com.drmangotea.tfmg.ponder;
 
 import com.drmangotea.tfmg.content.decoration.pipes.TFMGPipes;
+import com.drmangotea.tfmg.ponder.scenes.ChemistryScenes;
 import com.drmangotea.tfmg.ponder.scenes.MetallurgyScenes;
 import com.drmangotea.tfmg.ponder.scenes.MiscTFMGScenes;
 import com.drmangotea.tfmg.registry.TFMGBlocks;
+import com.drmangotea.tfmg.registry.TFMGItems;
 import com.simibubi.create.Create;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
 import com.simibubi.create.infrastructure.ponder.scenes.fluid.PipeScenes;
@@ -31,6 +33,10 @@ public class TFMGPonderScenes {
         ).addStoryBoard("chemical_vat", MiscTFMGScenes::chemical_vat, TFMGPonderTags.CHEMICAL_VAT);
         HELPER.forComponents(TFMGBlocks.COKE_OVEN)
                 .addStoryBoard("coke_oven", MetallurgyScenes::coke_oven, TFMGPonderTags.METALLURGY);
+
+        // Sulfur recovery: registered after the coke oven's own scene so that one plays first
+        HELPER.forComponents(TFMGBlocks.STEEL_CHEMICAL_VAT, TFMGBlocks.FIREPROOF_CHEMICAL_VAT, TFMGBlocks.COKE_OVEN, TFMGItems.SULFUR_DUST)
+                .addStoryBoard("claus_plant", ChemistryScenes::clausPlant, TFMGPonderTags.METALLURGY, TFMGPonderTags.CHEMICAL_VAT);
         HELPER.forComponents(TFMGBlocks.PUMPJACK_BASE,TFMGBlocks.PUMPJACK_CRANK,TFMGBlocks.PUMPJACK_HAMMER)
                 .addStoryBoard("pumpjack", MiscTFMGScenes::pumpjack, TFMGPonderTags.OIL_PROCESSING);
        // HELPER.forComponents(TFMGBlocks.REGULAR_ENGINE, TFMGBlocks.TURBINE_ENGINE, TFMGBlocks.RADIAL_ENGINE)

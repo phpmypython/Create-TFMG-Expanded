@@ -101,7 +101,9 @@ public class TFMGPonderTags {
                 .add(TFMGBlocks.BLAST_FURNACE_REINFORCEMENT)
                 .add(TFMGBlocks.RUSTED_BLAST_FURNACE_REINFORCEMENT)
                 .add(TFMGBlocks.BLAST_STOVE)
-                .add(TFMGBlocks.CASTING_BASIN);
+                .add(TFMGBlocks.COKE_OVEN)
+                .add(TFMGBlocks.CASTING_BASIN)
+                .add(TFMGItems.SULFUR_DUST);
 
         HELPER.addToTag(ELECTRIC_MACHINERY)
                 .add(TFMGBlocks.ROTOR)

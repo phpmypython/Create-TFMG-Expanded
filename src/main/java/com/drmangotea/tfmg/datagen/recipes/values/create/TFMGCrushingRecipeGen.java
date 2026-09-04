@@ -50,8 +50,8 @@ public class TFMGCrushingRecipeGen extends CrushingRecipeGen {
                     .output(.1f, TFMGItems.LEAD_NUGGET, 2)
             ),
             SULFUR = create(() -> TFMGBlocks.SULFUR, b -> b
-                    .output(.2f, sulfurDust(), 1)
-                    .output(.1f, sulfurDust(), 1)
+                    .output(sulfurDust(), 1)
+                    .output(.25f, sulfurDust(), 1)
             ),
             LITHIUM_ORE = create(() -> TFMGBlocks.LITHIUM_ORE, b -> b
                     .output(TFMGItems.CRUSHED_LITHIUM, 1)

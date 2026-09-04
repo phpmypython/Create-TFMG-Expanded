@@ -95,7 +95,17 @@ public class TFMGVatRecipeGen extends VatRecipeGen {
                     .output(.25f, TFMGItems.ALUMINUM_NUGGET, 2)
                     .output(TFMGFluids.CARBON_DIOXIDE.get(), 500)
                     .duration(100)
-                    .values(electrolysis()))
+                    .values(electrolysis())),
+
+            // Claus sulfur recovery: raw coke-oven gas + combustion air -> sulfur, sweet fuel gas, water.
+            CLAUS_SULFUR_RECOVERY = create("claus_sulfur_recovery", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
+                    .require(SizedFluidIngredient.of(TFMGFluids.SOUR_GAS.getSource(), 2000))
+                    .require(TFMGFluids.AIR.get(), 500)
+                    .output(sulfurDust(), 2)
+                    .output(TFMGFluids.FURNACE_GAS.get(), 1500)
+                    .output(water(), 250)
+                    .duration(200)
+                    .values(clausReactionFurnace()))
 
 
                     //DEBUG = createVatRecipe("debug_5", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
@@ -119,6 +129,22 @@ public class TFMGVatRecipeGen extends VatRecipeGen {
                     ;
 
     /// ////
+
+    /**
+     * A Claus reaction furnace: a steel or firebrick lined vat of at least four blocks, held at
+     * heat level 3, with a mixer to keep the gas and air in contact.
+     */
+    public VatRecipeValues clausReactionFurnace() {
+        VatRecipeValues params = new VatRecipeValues();
+        params.machines.add("tfmg:mixing");
+        params.allowedVatTypes = new ArrayList<>();
+        params.allowedVatTypes.add("tfmg:steel_vat");
+        params.allowedVatTypes.add("tfmg:firebrick_lined_vat");
+        params.heat = 3;
+        params.minSize = 4;
+        return params;
+    }
+
     public VatRecipeValues electrolysis() {
         VatRecipeValues params = new VatRecipeValues();
         params.machines.add("tfmg:electrode");

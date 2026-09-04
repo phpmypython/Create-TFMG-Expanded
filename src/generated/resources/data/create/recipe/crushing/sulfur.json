@@ -7,11 +7,10 @@
   ],
   "results": [
     {
-      "chance": 0.2,
       "id": "tfmg:sulfur_dust"
     },
     {
-      "chance": 0.1,
+      "chance": 0.25,
       "id": "tfmg:sulfur_dust"
     }
   ]

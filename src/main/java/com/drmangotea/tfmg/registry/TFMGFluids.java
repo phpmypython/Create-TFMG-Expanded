@@ -37,6 +37,7 @@ public class TFMGFluids {
             PROPANE = gasFuel("propane", 0xff88bf80, TFMGTags.TFMGFluidTags.FIREBOX_FUEL.tag),
             HYDROGEN = gasFuel("hydrogen", 0xffd0f2f5),
             FURNACE_GAS = gasFuel("furnace_gas", 0xff5c5555, TFMGTags.TFMGFluidTags.BLAST_STOVE_FUEL.tag, TFMGTags.TFMGFluidTags.FURNACE_GAS.tag),
+            SOUR_GAS = gasFuel("sour_gas", 0xffb9b34a, TFMGTags.TFMGFluidTags.BLAST_STOVE_FUEL.tag, TFMGTags.TFMGFluidTags.SOUR_GAS.tag),
             ETHYLENE = gas("ethylene", 0xffbcadcc),
             PROPYLENE = gas("propylene", 0xffc0d1b4),
             NEON = gas("neon", 0xff9dede9),

@@ -66,7 +66,14 @@ public class BaseFuelTypes {
             .speed(0.5f)
             .efficiency(0.3f)
             .stress(0.3f)
-            .registerAndAssign(TFMGTags.TFMGFluidTags.FURNACE_GAS.tag);
+            .registerAndAssign(TFMGTags.TFMGFluidTags.FURNACE_GAS.tag),
+
+    // Raw coke-oven gas: burnable, but every drop burned is sulfur not recovered.
+    SOUR_GAS = create("sour_gas")
+            .speed(0.5f)
+            .efficiency(0.25f)
+            .stress(0.3f)
+            .registerAndAssign(TFMGTags.TFMGFluidTags.SOUR_GAS.tag);
 
 
     private static FuelType.Builder create(String name) {
