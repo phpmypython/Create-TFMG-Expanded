@@ -5,7 +5,14 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.89'
 }
 
-version = "${minecraft_version}-${mod_version}"
+// A jar built by CI but not cut as a release carries its workflow run number,
+// so a jar pulled from a build artifact is never mistaken for a released one.
+boolean ciBuild = Boolean.parseBoolean(System.getenv('CI'))
+boolean releaseBuild = Boolean.parseBoolean(System.getenv('RELEASE'))
+String runNumber = System.getenv('GITHUB_RUN_NUMBER')
+String buildSuffix = ciBuild && !releaseBuild && runNumber != null ? "-build.${runNumber}" : ''
+
+version = "${minecraft_version}-${mod_version}${buildSuffix}"
 group = mod_group_id
 
 repositories {

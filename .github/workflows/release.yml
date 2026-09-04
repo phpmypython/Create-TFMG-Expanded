@@ -1,0 +1,130 @@
+name: Release
+
+# Cut a release either by pushing a tag (v1.3.0) or from the Actions tab
+# with a version; the version becomes mod_version, the jar name and the tag.
+# Versions are semantic: MAJOR.MINOR.PATCH, optionally -alpha.1 style pre-releases.
+on:
+  push:
+    tags: [ "v*" ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version, without the leading v (e.g. 1.3.0)"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve version and tag
+        id: meta
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ inputs.version }}"
+            VERSION="${VERSION#v}"
+            TAG="v${VERSION}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+            VERSION="${TAG#v}"
+          fi
+          if ! [[ "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Version '${VERSION}' is not semantic (MAJOR.MINOR.PATCH, optional -prerelease)" >&2; exit 1
+          fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
+              echo "Tag ${TAG} already exists" >&2; exit 1
+            fi
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag -a "${TAG}" -m "Release ${VERSION}"
+            git push origin "${TAG}"
+          fi
+          PREV="$(git describe --tags --abbrev=0 "${TAG}^" 2>/dev/null || true)"
+          PRERELEASE=false
+          case "${VERSION}" in *-alpha*|*-beta*|*-rc*|*-pre*) PRERELEASE=true ;; esac
+          {
+            echo "version=${VERSION}"
+            echo "tag=${TAG}"
+            echo "prev=${PREV}"
+            echo "prerelease=${PRERELEASE}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build release jar
+        env:
+          RELEASE: "true"
+        run: ./gradlew build --no-daemon --console=plain -Pmod_version="${{ steps.meta.outputs.version }}"
+
+      - name: Write release notes
+        id: notes
+        run: |
+          JAR="$(ls build/libs/*.jar | grep -v -- '-sources.jar' | grep -v -- '-javadoc.jar' | head -1)"
+          echo "jar=${JAR}" >> "$GITHUB_OUTPUT"
+          PREV="${{ steps.meta.outputs.prev }}"
+          TAG="${{ steps.meta.outputs.tag }}"
+          {
+            echo "# TFMG Expanded ${{ steps.meta.outputs.version }}"
+            echo
+            echo "Built by GitHub Actions from \`${GITHUB_SHA::8}\` on \`${GITHUB_REF_NAME}\`. Requires NeoForge 21.1 and Create 6."
+            echo
+            if [ -n "${PREV}" ]; then
+              echo "## Changes since ${PREV}"
+              git log --no-merges --format='- %s (%h)' "${PREV}..${TAG}"
+              echo
+              echo "**Full changelog**: https://github.com/${GITHUB_REPOSITORY}/compare/${PREV}...${TAG}"
+            else
+              echo "## Changes"
+              git log --no-merges --format='- %s (%h)' "${TAG}"
+            fi
+            echo
+            echo "---"
+            echo "Create: TFMG Expanded is a maintained line of Create: The Factory Must Grow, developed with AI assistance and reviewed by the maintainer. See the [README](https://github.com/${GITHUB_REPOSITORY}#what-this-is) for what it adds. Report problems with this build [here](https://github.com/${GITHUB_REPOSITORY}/issues), not to the upstream project."
+          } > release-notes.md
+          cat release-notes.md
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          EXTRA=""
+          if [ "${{ steps.meta.outputs.prerelease }}" = "true" ]; then EXTRA="--prerelease"; fi
+          gh release create "${{ steps.meta.outputs.tag }}" "${{ steps.notes.outputs.jar }}" \
+            --title "TFMG Expanded ${{ steps.meta.outputs.version }}" \
+            --notes-file release-notes.md ${EXTRA}
+
+      # neoforge.mods.toml points the in-game update checker at this file on the 1.21.1 branch
+      - name: Update version manifest
+        run: |
+          git fetch origin 1.21.1
+          git checkout -B 1.21.1 origin/1.21.1
+          VERSION="${{ steps.meta.outputs.version }}"
+          URL="https://github.com/${GITHUB_REPOSITORY}/releases/tag/${{ steps.meta.outputs.tag }}"
+          PRE="${{ steps.meta.outputs.prerelease }}"
+          jq --arg v "${VERSION}" --arg url "${URL}" --arg pre "${PRE}" '
+            ."1.21.1"[$v] = $url
+            | .promos."1.21.1-latest" = $v
+            | if $pre == "false" then .promos."1.21.1-recommended" = $v else . end
+          ' updates.json > updates.json.new && mv updates.json.new updates.json
+          if git diff --quiet; then echo "manifest already current"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "Add ${VERSION} to the version manifest [skip ci]"
+          git push origin 1.21.1
