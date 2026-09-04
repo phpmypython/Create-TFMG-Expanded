@@ -23,7 +23,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -248,7 +247,6 @@ public class LargeTransformerBlockEntity extends KineticElectricBlockEntity {
         if(resistanceTimer>=0){
             if(resistanceTimer == 0){
                 recalculateNetworkResistance();
-                level.setBlock(getBlockPos().above(2), Blocks.GOLD_BLOCK.defaultBlockState(),3);
                 sendStuff();
             }
             resistanceTimer--;
