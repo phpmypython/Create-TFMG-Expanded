@@ -89,6 +89,12 @@ public class LargeCoilBlockEntity extends SmartBlockEntity {
     }
 
     @Override
+    public void writeSafe(CompoundTag tag, HolderLookup.Provider registries) {
+        super.writeSafe(tag, registries);
+        tag.putInt("Turns", turns);
+    }
+
+    @Override
     protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.write(tag, registries, clientPacket);
         tag.putInt("Turns", turns);

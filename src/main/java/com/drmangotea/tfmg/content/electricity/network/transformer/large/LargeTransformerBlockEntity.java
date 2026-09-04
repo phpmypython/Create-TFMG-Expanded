@@ -134,11 +134,29 @@ public class LargeTransformerBlockEntity extends KineticElectricBlockEntity {
         compound.putString("State", constructionState.toString());
     }
 
+    // A schematic only carries what writeSafe() puts in the tag (Create's PartialSafeNBT).
+    // Without this the transformer is placed with no State, and read() throws on the empty
+    // enum name, which aborts the print at that block.
+    @Override
+    public void writeSafe(CompoundTag compound, HolderLookup.Provider registries) {
+        super.writeSafe(compound, registries);
+        compound.putFloat("Ratio", turnRatio);
+        compound.putString("State", constructionState.toString());
+    }
+
     @Override
     protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
         super.read(compound, registries, clientPacket);
-        turnRatio = compound.getFloat("Ratio");
-        constructionState = Enum.valueOf(TransformerConstructionState.class, compound.getString("State"));
+        if (compound.contains("Ratio"))
+            turnRatio = compound.getFloat("Ratio");
+        String state = compound.getString("State");
+        if (!state.isEmpty())
+            constructionState = Enum.valueOf(TransformerConstructionState.class, state);
+        else
+            // Placed from a tag that predates writeSafe: the block state says whether the
+            // casing was ever finished.
+            constructionState = getBlockState().getValue(LargeTransformerBlock.UNFINISHED_MODEL)
+                    ? TransformerConstructionState.NEEDS_STEEL : TransformerConstructionState.FINISHED;
     }
 
     @Override
