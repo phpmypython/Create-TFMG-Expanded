@@ -75,6 +75,10 @@ repositories {
     maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // ForgeConfigAPIPort
     maven { url = "https://maven.blamejared.com" } // JEI, Vazkii's Mods
     maven { url = "https://cursemaven.com" }
+    maven {
+        url = "https://api.modrinth.com/maven" // Create Propulsion: Simulated, compile only
+        content { includeGroup "maven.modrinth" }
+    }
 }
 
 dependencies {
@@ -89,6 +93,13 @@ dependencies {
     runtimeOnly("curse.maven:configured-457570:7122915")
     implementation("mezz.jei:jei-${jei_minecraft_version}-neoforge:${jei_version}")
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    // Create Propulsion: Simulated. Compile only, and deliberately not runtimeOnly: the only
+    // thing that names it is the burner heat compat mixin, which is switched off unless the mod
+    // is actually installed, so dev runs and packs without it must not need the jar. The
+    // coordinate is Modrinth's maven, maven.modrinth:<project slug>:<version id>; H13U56dc is
+    // 1.1.5 for neoforge 1.21.1 (https://modrinth.com/mod/create-propulsion-simulated).
+    compileOnly("maven.modrinth:create-propulsion-simulated:H13U56dc")
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
