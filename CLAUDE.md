@@ -7,7 +7,8 @@ Guidance for AI coding agents (and humans) working in this repository.
 **Create: TFMG Expanded** is a continuation of Create: The Factory Must Grow by DrMangoTea — a NeoForge 1.21.1 mod
 adding industrial metallurgy, oil processing, chemistry, engines and electricity to Create — on its own line, on top of
 which this project adds root-cause fixes and new industrial mechanics (sulfur recovery, pipe goggle readouts, pipeline
-pump stations, more on the issue board). The tree is based on the original mod and is MIT-licensed throughout. AI
+pump stations, more on the issue board). The tree is based on the original mod, which is MIT-licensed; this
+project's own contributions are `GPL-2.0-only`, so the combined work is GPL — see [LICENCE.md](LICENCE.md). AI
 tooling is used openly here, under an experienced maintainer's direction. Read
 [README.md](README.md) ("Why it exists" and "How it's built") and
 [CONTRIBUTING.md](CONTRIBUTING.md) first — the contribution rules there apply to agents exactly as they do to
@@ -65,6 +66,8 @@ under `src/generated/resources/` (committed, produced by datagen — never edit 
   a fluid, block or item is a registry change: clients and servers must update together.
 * **Match the surrounding code.** Same naming, comment density and idioms as the file you are in. Don't add
   dependencies or reinvent something Create already provides.
+* **Licensing.** New source written for this project is `GPL-2.0-only`; the original mod's code stays MIT. Both
+  `LICENCE.md` and `LICENSE-GPL-2.0.txt` must be kept in the tree — do not remove or replace either.
 * **Upstream.** This tree is based on `DrMango14/Create-The_Factory_Must_Grow` at commit `ed19921e` (tag `base-1.2.3`).
   Nothing after that commit is merged, cherry-picked or retyped from upstream; fixes are re-derived here from the bug
   itself.

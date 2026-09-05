@@ -28,5 +28,6 @@ the pull request.
 
 ## Licence
 
-Contributions are made under the repository's [MIT licence](LICENCE.md). Nothing in it restricts the tools you
-use to write a change, and I use AI tooling openly.
+Contributions to this repository are accepted under the GNU General Public License, version 2 (`GPL-2.0-only`);
+see [LICENCE.md](LICENCE.md).
+Nothing in it restricts the tools you use to write a change, and I use AI tooling openly.

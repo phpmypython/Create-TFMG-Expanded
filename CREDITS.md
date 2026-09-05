@@ -14,5 +14,5 @@ Vorbis. They live under `src/main/resources/assets/tfmg/sounds/`.
 | `pipeline/pipe_strain.ogg` | freesound_community — *metal poppy tranzeence snaps* | `tfmg:pipeline.pipe_strain`, the sound a pipe makes while it is carrying more pressure than it is rated for |
 | `pipeline/pipe_burst.ogg` | freesound_community — *metal hit cartoon* | `tfmg:pipeline.pipe_burst`, the sound a pipe makes when it lets go |
 
-Everything else in this repository is either original to Create: The Factory Must Grow or written for this
-project, under the terms of the MIT licence. See [LICENCE.md](LICENCE.md).
+Everything else in this repository is either original to Create: The Factory Must Grow, under the terms of the
+MIT licence, or written for this project, under the terms of GPL-2.0-only. See [LICENCE.md](LICENCE.md).

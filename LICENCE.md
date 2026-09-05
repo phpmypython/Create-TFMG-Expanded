@@ -1,9 +1,17 @@
 # Licence
 
-Create: TFMG Expanded is a continuation of **Create: The Factory Must Grow** by DrMangoTea
-(https://github.com/DrMango14/Create-The_Factory_Must_Grow). This project's code was taken from that repository at
-commit `ed19921e` (2026-08-29) and is released under the MIT License it was published under. The notice below is reproduced exactly as it appeared in that repository's `LICENSE`
-file, and must be kept with any copy or substantial portion of this software.
+Create: TFMG Expanded is licensed under the GNU General Public License, version 2 (`GPL-2.0-only`). The full text
+is in [LICENSE-GPL-2.0.txt](LICENSE-GPL-2.0.txt).
+
+Copyright (c) 2026 the Create: TFMG Expanded contributors
+
+The project is a continuation of **Create: The Factory Must Grow** by DrMangoTea
+(https://github.com/DrMango14/Create-The_Factory_Must_Grow), taken from that repository at commit `ed19921e`
+(2026-08-29). That code was published under the MIT License and remains under it; the notice below is reproduced
+exactly as it appeared in that repository's `LICENSE` file. Changes and additions made here after that commit are
+`GPL-2.0-only`, and the project as a whole is distributed on those terms.
+
+Releases up to and including 2.0.1 were published under the MIT licence.
 
 ---
 

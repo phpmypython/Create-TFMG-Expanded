@@ -56,9 +56,9 @@ which under Anthropic's consumer terms means these coding sessions are not used 
 
 ## Licence
 
-The original mod was published under the MIT licence by DrMangoTea; this project was forked from it on that basis
-and continues under the same licence. The notice is
-reproduced in [LICENCE.md](LICENCE.md).
+Create: TFMG Expanded is licensed under the GNU General Public License, version 2 (`GPL-2.0-only`). The code it
+started from, Create: The Factory Must Grow by DrMangoTea, was published under the MIT licence and remains under it.
+Both notices are in [LICENCE.md](LICENCE.md).
 
 This project is not affiliated with or endorsed by the authors of Create: The Factory Must Grow. **Please do not report
 bugs from this build to them**; open them [here](https://github.com/phpmypython/Create-TFMG-Expanded/issues) instead.
