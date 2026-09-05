@@ -40,27 +40,34 @@ public class EnginePipingUpgrade extends EngineUpgrade {
     @Override
     public void lazyTickUpgrade(AbstractSmallEngineBlockEntity engine) {
 
-     
+        // Re-resolved every lazy tick rather than only when the reference is missing: six
+        // getBlockEntity calls at this rate cost nothing and a removed tank can never go stale.
+        findTank(engine);
+        if (tank.isEmpty())
+            return;
 
-        if (tank.isPresent()) {
+        AbstractSmallEngineBlockEntity controller = engine.getControllerBE();
+        if (controller == null || controller.fuelTank == null)
+            return;
 
-            AbstractSmallEngineBlockEntity controller = engine.getControllerBE();
+        // Ask the source what it would give up, ask the engine what it would take of that, then move
+        // exactly that stack. Sizing the transfer by the source's own remaining headroom moved nothing
+        // from a full tank, and re-reading the source's fluid after draining it dry filled the engine
+        // with an empty stack, which destroyed the fuel.
+        FluidTankBlockEntity tankBE = tank.get();
+        FluidStack available = tankBE.getTankInventory().drain(500, IFluidHandler.FluidAction.SIMULATE);
+        if (available.isEmpty())
+            return;
 
-            FluidTankBlockEntity tankBE = tank.get();
-            int maxOutput = tankBE.getTankInventory().drain(500, IFluidHandler.FluidAction.SIMULATE).getAmount();
-            int maxInput = tankBE.getTankInventory().fill(new FluidStack(tankBE.getFluid(0).getFluidHolder(), 500), IFluidHandler.FluidAction.SIMULATE);
-            if(controller == null)
-                return;
-            if(controller.fuelTank == null)
-                return;
+        int amount = controller.fuelTank.fill(available, IFluidHandler.FluidAction.SIMULATE);
+        if (amount == 0)
+            return;
 
-            int amount = Math.min(maxInput, Math.min(maxOutput, controller.fuelTank.getSpace()));
-
-            tankBE.getTankInventory().drain(amount, IFluidHandler.FluidAction.EXECUTE);
-            controller.getControllerBE().fuelTank.fill(new FluidStack(tankBE.getFluid(0).getFluidHolder(), amount), IFluidHandler.FluidAction.EXECUTE);
-
-        } else findTank(engine);
-
+        FluidStack drained = tankBE.getTankInventory().drain(amount, IFluidHandler.FluidAction.EXECUTE);
+        int filled = controller.fuelTank.fill(drained, IFluidHandler.FluidAction.EXECUTE);
+        if (filled < drained.getAmount())
+            tankBE.getTankInventory().fill(drained.copyWithAmount(drained.getAmount() - filled),
+                    IFluidHandler.FluidAction.EXECUTE);
     }
 
     @Override
