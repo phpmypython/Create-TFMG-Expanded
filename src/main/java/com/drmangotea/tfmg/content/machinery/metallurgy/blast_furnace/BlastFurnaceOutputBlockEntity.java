@@ -26,6 +26,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -402,6 +403,15 @@ public class BlastFurnaceOutputBlockEntity extends SmartBlockEntity implements I
         super.destroy();
         ItemHelper.dropContents(level, worldPosition, inputInventory);
         ItemHelper.dropContents(level, worldPosition, fluxInventory);
+
+        // The furnace stores its fuel as a plain count, so the item has to be reconstructed.
+        // tfmg:coal_coke_dust is the sole member of tfmg:blast_furnace_fuel, so it is the only
+        // thing this can hand back.
+        int maxStackSize = TFMGItems.COAL_COKE_DUST.get().getDefaultInstance().getMaxStackSize();
+        for (int remainingFuel = fuel; remainingFuel > 0; remainingFuel -= maxStackSize)
+            Block.popResource(level, worldPosition,
+                    new ItemStack(TFMGItems.COAL_COKE_DUST.get(), Math.min(remainingFuel, maxStackSize)));
+        fuel = 0;
     }
 
     public int getSize() {
