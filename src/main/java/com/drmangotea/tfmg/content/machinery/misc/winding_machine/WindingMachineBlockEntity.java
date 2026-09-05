@@ -189,9 +189,8 @@ public class WindingMachineBlockEntity extends KineticBlockEntity implements IHa
                 }
             }
 
-        if(spool.has(TFMGDataComponents.SPOOL_AMOUNT))
-            if (spool.getOrDefault(TFMGDataComponents.SPOOL_AMOUNT, defaultSpoolAmount) == 0 && !spool.is(TFMGItems.EMPTY_SPOOL.get()) && spool.getItem() instanceof SpoolItem)
-                spool = TFMGItems.EMPTY_SPOOL.asStack();
+        if (spool.getOrDefault(TFMGDataComponents.SPOOL_AMOUNT, defaultSpoolAmount) == 0 && !spool.is(TFMGItems.EMPTY_SPOOL.get()) && spool.getItem() instanceof SpoolItem)
+            spool = TFMGItems.EMPTY_SPOOL.asStack();
 
         if (recipe == null) {
             return;
@@ -211,9 +210,9 @@ public class WindingMachineBlockEntity extends KineticBlockEntity implements IHa
             if (spool.isEmpty() || spool.is(TFMGItems.EMPTY_SPOOL.get())) {
                 return;
             }
-            if (spool.get(TFMGDataComponents.SPOOL_AMOUNT) > 0) {
+            if (spool.getOrDefault(TFMGDataComponents.SPOOL_AMOUNT, defaultSpoolAmount) > 0) {
                 if (recipe.getSpool().test(spool)) {
-                    spool.set(TFMGDataComponents.SPOOL_AMOUNT, spool.get(TFMGDataComponents.SPOOL_AMOUNT) - 1);
+                    spool.set(TFMGDataComponents.SPOOL_AMOUNT, spool.getOrDefault(TFMGDataComponents.SPOOL_AMOUNT, defaultSpoolAmount) - 1);
                     amountWinded++;
                 }
             } else {
