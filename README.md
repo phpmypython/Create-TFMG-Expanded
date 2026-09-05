@@ -41,8 +41,7 @@ Everything planned, in progress or done is on the [project board](https://github
 This project began because in my Create playthrough with TFMG I hit bugs constantly, and as a software engineer my first instinct is to fix them.
 So I forked the mod, put the fixes there, and the scope grew past bug fixing into a line of its own — the sulfur recovery, pipeline pump stations and pipe readouts above.
 
-I'm not gonna gatekeep contributions on this project because someone used a tool that is commonplace in modern software development.
-The only thing that gates contributions here is whether they're correct. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## How it's built
 
