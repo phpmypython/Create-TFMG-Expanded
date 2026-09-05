@@ -1418,18 +1418,6 @@ public class TFMGStandardRecipeGen extends TFMGRecipeProvider {
             .viaCooking(() -> TFMGItems.UNFIRED_INSULATOR)
             .inFurnace(),
 
-    RAW_LEAD = create(TFMGItems.LEAD_INGOT::get)
-            .viaCooking(() -> TFMGItems.RAW_LEAD)
-            .inFurnace(),
-
-    NICKEL = create(TFMGItems.NICKEL_INGOT::get)
-            .viaCooking(() -> TFMGItems.RAW_NICKEL)
-            .inFurnace(),
-
-    LITHIUM = create(TFMGItems.LITHIUM_INGOT::get)
-            .viaCooking(() -> TFMGItems.RAW_LITHIUM)
-            .inFurnace(),
-
     RAW_LEAD_BLASTING = create(TFMGItems.LEAD_INGOT::get).withSuffix("_blasting")
             .viaCooking(() -> TFMGItems.RAW_LEAD)
             .inBlastFurnace(),
