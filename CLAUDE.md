@@ -65,9 +65,9 @@ under `src/generated/resources/` (committed, produced by datagen — never edit 
   a fluid, block or item is a registry change: clients and servers must update together.
 * **Match the surrounding code.** Same naming, comment density and idioms as the file you are in. Don't add
   dependencies or reinvent something Create already provides.
-* **Taking upstream changes.** Upstream is the original mod, `DrMango14/Create-The_Factory_Must_Grow`, MIT-licensed.
-  Merging from it is a deliberate choice, not a routine: read every incoming commit before merging and check that
-  nothing overrides one of this project's fixes.
+* **Upstream.** This tree is based on `DrMango14/Create-The_Factory_Must_Grow` at commit `ed19921e` (tag `base-1.2.3`).
+  Nothing after that commit is merged, cherry-picked or retyped from upstream; fixes are re-derived here from the bug
+  itself.
 
 ## Verified facts that are easy to get wrong
 

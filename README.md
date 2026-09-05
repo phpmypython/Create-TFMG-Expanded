@@ -56,7 +56,8 @@ which under Anthropic's consumer terms means these coding sessions are not used 
 
 ## Licence
 
-The original mod is MIT-licensed by DrMangoTea, and this project continues it under the same licence. The notice is
+The original mod was published under the MIT licence by DrMangoTea; this project was forked from it on that basis
+and continues under the same licence. The notice is
 reproduced in [LICENCE.md](LICENCE.md).
 
 This project is not affiliated with or endorsed by the authors of Create: The Factory Must Grow. **Please do not report
