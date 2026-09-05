@@ -2,6 +2,7 @@ package com.drmangotea.tfmg.ponder;
 
 import com.drmangotea.tfmg.content.decoration.pipes.TFMGPipes;
 import com.drmangotea.tfmg.ponder.scenes.ChemistryScenes;
+import com.drmangotea.tfmg.ponder.scenes.ElectricityScenes;
 import com.drmangotea.tfmg.ponder.scenes.MetallurgyScenes;
 import com.drmangotea.tfmg.ponder.scenes.MiscTFMGScenes;
 import com.drmangotea.tfmg.registry.TFMGBlocks;
@@ -44,6 +45,10 @@ public class TFMGPonderScenes {
         HELPER.forComponents(TFMGBlocks.GENERATOR, TFMGBlocks.ROTOR, TFMGBlocks.STATOR, TFMGBlocks.ELECTRIC_MOTOR)
                 .addStoryBoard("electricity", MiscTFMGScenes::electricity, TFMGPonderTags.ELECTRIC_MACHINERY)
                 .addStoryBoard("electricity_two", MiscTFMGScenes::electricy_two, TFMGPonderTags.ELECTRIC_MACHINERY);
+
+        // How the first magnets are made, before there is any electricity to make them with
+        HELPER.forComponents(TFMGBlocks.POLARIZER, TFMGItems.MAGNETIC_ALLOY_INGOT, TFMGItems.MAGNET)
+                .addStoryBoard("magnet_bootstrap", ElectricityScenes::magnetBootstrap, TFMGPonderTags.ELECTRIC_MACHINERY);
 
         // Add our fluid manipulators to Create's ponder scenes
         HELPER.forComponents(

@@ -41,6 +41,13 @@ public class PolarizerBlockEntity extends ElectricBlockEntity implements IHaveGo
 
     LerpedFloat angle = LerpedFloat.angular();
 
+    /**
+     * The polarizer only advances its charge while it is drawing at least this much power; see
+     * tick(). It presents 30 ohm to the network while charging, so this is V^2 / 30 W and works
+     * out at 174 V - a small generator turning at 165 RPM or faster.
+     */
+    public static final int MINIMUM_POWER = 1000;
+
     public boolean chargeCapacitors = false;
     public int capacitorPercentage = 0;
 
@@ -100,8 +107,8 @@ public class PolarizerBlockEntity extends ElectricBlockEntity implements IHaveGo
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
         TFMGTexts.Multimeter.charge(capacitorPercentage/2f).forGoggles(tooltip);
-        if(getPowerUsage()<2000&&!inventory.isEmpty()){
-            TFMGTexts.Multimeter.notEnoughPower(2000).forGoggles(tooltip, 1);
+        if(getPowerUsage()<MINIMUM_POWER&&!inventory.isEmpty()){
+            TFMGTexts.Multimeter.notEnoughPower(MINIMUM_POWER).forGoggles(tooltip, 1);
             return true;
         }
         TFMGTexts.header("polarizer").style(ChatFormatting.GRAY).forGoggles(tooltip, 1);
@@ -123,7 +130,7 @@ public class PolarizerBlockEntity extends ElectricBlockEntity implements IHaveGo
         }
 
 
-            if (getPowerUsage() >= 1000) {
+            if (getPowerUsage() >= MINIMUM_POWER) {
                 if (chargeCapacitors) {
                     if (capacitorPercentage < 200) {
                         capacitorPercentage++;
