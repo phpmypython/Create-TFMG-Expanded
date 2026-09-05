@@ -178,7 +178,7 @@ public class ElectricalNetwork {
 
         if (network.contains(this)) {
             if (!members.isEmpty())
-                members.get(0).getLevelAccessor().destroyBlock(pos, false);
+                members.get(0).getLevelAccessor().destroyBlock(pos, true);
             return;
         }
         network.add(this);
