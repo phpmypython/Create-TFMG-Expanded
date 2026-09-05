@@ -31,7 +31,21 @@ public class TFMGRemapper {
         reMapBlock.put("copper_encased_cast_iron_pipe", TFMG.asResource("encased_cast_iron_pipe"));
         reMapBlock.put("copper_encased_plastic_pipe", TFMG.asResource("encased_plastic_pipe"));
 
+        // Renamed in releases 1.3.0 to 1.5.1 of this project, which dropped the "casing" from the heavy
+        // encased family. A world built on one of those releases holds the shorter names; without
+        // these the blocks resolve to nothing and the chunk turns them to air on load. Aliases in
+        // reMapBlock are applied to the item registry as well, so the block-items follow.
+        reMapBlock.put("heavy_encased_shaft", TFMG.asResource("heavy_casing_encased_shaft"));
+        reMapBlock.put("heavy_encased_steel_cogwheel", TFMG.asResource("heavy_casing_encased_steel_cogwheel"));
+        reMapBlock.put("heavy_encased_large_steel_cogwheel", TFMG.asResource("heavy_casing_encased_large_steel_cogwheel"));
+        reMapBlock.put("heavy_encased_aluminum_cogwheel", TFMG.asResource("heavy_casing_encased_aluminum_cogwheel"));
+        reMapBlock.put("heavy_encased_large_aluminum_cogwheel", TFMG.asResource("heavy_casing_encased_large_aluminum_cogwheel"));
+
         //Items
+        // Not a rename: the autogas cylinder is an item from releases 1.3.0 to 1.5.1 with no counterpart here.
+        // Pointing it at the plain engine cylinder is a lossy substitution, chosen because the
+        // alternative is the whole ItemStack failing to decode and the slot emptying silently.
+        reMapItem.put("autogas_engine_cylinder", TFMG.asResource("engine_cylinder"));
     }
 
     @SubscribeEvent
