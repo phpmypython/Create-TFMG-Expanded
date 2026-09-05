@@ -120,7 +120,7 @@ public class RotorBlockEntity extends KineticElectricBlockEntity {
 
             if (level.getBlockEntity(pos) instanceof StatorBlockEntity be) {
 
-                if (be.rotor == null || be.rotor == getBlockPos()) {
+                if (be.rotor == null || be.rotor.equals(getBlockPos())) {
 
                     stators.add(pos);
                     level.setBlock(pos, state, 2);
