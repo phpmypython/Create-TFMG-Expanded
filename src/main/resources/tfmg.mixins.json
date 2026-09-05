@@ -21,6 +21,10 @@
     "accessor.TankSegmentAccessor"
   ],
   "client": [
+    "client.FluidPipeBlockEntityGoggleMixin",
+    "client.KineticBlockEntityGoggleMixin",
+    "client.SmartFluidPipeBlockEntityGoggleMixin",
+    "client.StraightPipeBlockEntityGoggleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

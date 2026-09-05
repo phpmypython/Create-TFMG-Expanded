@@ -5,7 +5,10 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
  * Utility class for storing translations and texts that could occur more than once.
@@ -225,6 +228,44 @@ public class TFMGTexts {
         }
         public static LangBuilder noRotation() {
             return TFMGLang.translate("goggles.surface_scanner.no_rotation").style(ChatFormatting.DARK_RED);
+        }
+    }
+
+    // Pipe Tooltips
+    public static class Pipe {
+        public static LangBuilder carrying(FluidStack fluid) {
+            return TFMGLang.translate("goggles.pipe.carrying", TFMGLang.fluidName(fluid)).style(ChatFormatting.GOLD);
+        }
+        public static LangBuilder empty() {
+            return TFMGLang.translate("goggles.pipe.empty").style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder flowSummary(int inbound, int outbound) {
+            return TFMGLang.translate("goggles.pipe.flow_summary", inbound, outbound).style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder noFlow() {
+            return TFMGLang.translate("goggles.pipe.no_flow").style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder face(Direction side, LangBuilder state) {
+            return TFMGLang.translate("goggles.pipe.face", TFMGLang.translate("direction." + side.getSerializedName()), state)
+                    .style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder inbound() {
+            return TFMGLang.translate("goggles.pipe.inbound").style(ChatFormatting.AQUA);
+        }
+        public static LangBuilder outbound() {
+            return TFMGLang.translate("goggles.pipe.outbound").style(ChatFormatting.GOLD);
+        }
+        public static LangBuilder idle() {
+            return TFMGLang.translate("goggles.pipe.idle").style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder pressure(float pressure) {
+            return TFMGLang.translate("goggles.pipe.pressure", TFMGLang.number(pressure)).style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder filter(Component filter) {
+            return TFMGLang.translate("goggles.pipe.filter", filter).style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder noFilter() {
+            return TFMGLang.translate("goggles.pipe.no_filter").style(ChatFormatting.DARK_GRAY);
         }
     }
 

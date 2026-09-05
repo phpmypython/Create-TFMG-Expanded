@@ -89,6 +89,25 @@
 
   "tfmg.goggles.electrode_holder.min_amps": "Not Enough Current (Needs ",
 
+  "tfmg.goggles.pipe.carrying": "Carrying: %1$s",
+  "tfmg.goggles.pipe.empty": "Empty",
+  "tfmg.goggles.pipe.flow_summary": "Flow: %1$s in / %2$s out",
+  "tfmg.goggles.pipe.no_flow": "Flow: Idle",
+  "tfmg.goggles.pipe.face": "%1$s: %2$s",
+  "tfmg.goggles.pipe.inbound": "In",
+  "tfmg.goggles.pipe.outbound": "Out",
+  "tfmg.goggles.pipe.idle": "Idle",
+  "tfmg.goggles.pipe.pressure": "P = %1$s",
+  "tfmg.goggles.pipe.filter": "Filter: %1$s",
+  "tfmg.goggles.pipe.no_filter": "Filter: None",
+
+  "tfmg.direction.down": "Down",
+  "tfmg.direction.up": "Up",
+  "tfmg.direction.north": "North",
+  "tfmg.direction.south": "South",
+  "tfmg.direction.west": "West",
+  "tfmg.direction.east": "East",
+
   "tfmg.vat.header": "Chemical Vat",
   "tfmg.goggles.vat.attachments": "Attachments:",
   "tfmg.goggles.vat.contents": "Vat Contents:",
