@@ -33,6 +33,7 @@ public class TFMGVatRecipeGen extends VatRecipeGen {
             .require(TFMGItems.LIMESAND)
             .require(Fluids.WATER, 250)
             .output(TFMGFluids.LIQUID_CONCRETE.get(), 32000)
+            .duration(50)
             .values(mixing(true))
     ),
             ARC_FURNACE_STEEL = create("arc_furnace_steel", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
@@ -56,28 +57,33 @@ public class TFMGVatRecipeGen extends VatRecipeGen {
                     .require(sulfurDust())
                     .require(nitrateDust())
                     .output(sulfuricAcid(), 500)
+                    .duration(60)
                     .values(mixing(true))),
 
     RUBBER = create("rubber", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
             .require(SizedFluidIngredient.of(heavyOil(), 250))
             .require(sulfurDust())
             .output(rubber())
+            .duration(120)
             .values(heatedmixing(true))),
 
     NAPHTHA = create("naphtha", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
             .require(SizedFluidIngredient.of(naphtha(), 500))
             .output(ethylene(), 250)
             .output(propylene(), 250)
+            .duration(80)
             .values(heatedmixing(true))),
 
     PLASTIC_FROM_ETHYLENE = create("plastic_from_ethylene", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
             .require(SizedFluidIngredient.of(ethylene(), 500))
             .output(liquidPlastic(), 500)
+            .duration(100)
             .values(heatedmixing(true))),
 
             PLASTIC_FROM_PROPYLENE = create("plastic_from_propylene", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
                     .require(SizedFluidIngredient.of(propylene(), 500))
                     .output(liquidPlastic(), 500)
+                    .duration(100)
                     .values(heatedmixing(true))),
             ETCHED_CIRCUIT_BOARD = create("etched_circuit_board", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
                     .require(TFMGItems.COATED_CIRCUIT_BOARD)
