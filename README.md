@@ -49,16 +49,11 @@ Bugs are diagnosed at the root (decompiled bytecode, world data, reproductions o
 smallest correct change. New mechanics are modelled on how the real industry works and taught in-game with ponder scenes.
 Every change is explained in its commit so anyone can check the reasoning.
 
-I use Claude Code as part of that work. Every change is specified, reviewed, tested and playtested by me before it is merged;
-nothing lands on the word of a tool. The account it runs on has Anthropic's "Model Improvement" privacy setting turned off,
-which under Anthropic's consumer terms means these coding sessions are not used for model training
-(https://www.anthropic.com/news/updates-to-our-consumer-terms). Nothing here is used for training; it is used for playing.
-
 ## Licence
 
-The original mod was published under the MIT licence by DrMangoTea; this project was forked from it on that basis
-and continues under the same licence. The notice is
-reproduced in [LICENCE.md](LICENCE.md).
+Create: TFMG Expanded is licensed under the GNU General Public License, version 2 (`GPL-2.0-only`). The code it
+started from, Create: The Factory Must Grow by DrMangoTea, was published under the MIT licence and remains under it.
+Both notices are in [LICENCE.md](LICENCE.md).
 
 This project is not affiliated with or endorsed by the authors of Create: The Factory Must Grow. **Please do not report
 bugs from this build to them**; open them [here](https://github.com/phpmypython/Create-TFMG-Expanded/issues) instead.
