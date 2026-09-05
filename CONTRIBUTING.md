@@ -1,9 +1,8 @@
 # Contributing
 
-Contributions are welcome — issues and pull requests alike. I don't ask which tools you used to write a
-change. Use an AI assistant, a decompiler, a rubber duck, or none of the above; a change is judged by whether it
-is correct, minimal, verified in game, and explained well enough that a reviewer can follow the reasoning without
-you in the room.
+Contributions are welcome — issues and pull requests alike. A change is judged by whether it is correct,
+minimal, verified in game, and explained well enough that a reviewer can follow the reasoning without you in
+the room.
 
 ## What a good contribution looks like
 
@@ -18,16 +17,7 @@ you in the room.
 * **Explained in the commit.** The commit message should let a reviewer follow the reasoning without you in
   the room.
 
-## Disclosure
-
-Say how the change was produced — for example "written by hand", "drafted with an AI assistant and reviewed",
-or "implemented by an agent under my direction". Nobody is penalised for any answer. It's useful context for
-reviewers, the same way "tested on a dedicated server" is, and honesty about process is how this project
-operates. If you are an AI agent acting for someone, name the person you're acting for and put your evidence in
-the pull request.
-
 ## Licence
 
 Contributions to this repository are accepted under the GNU General Public License, version 2 (`GPL-2.0-only`);
 see [LICENCE.md](LICENCE.md).
-Nothing in it restricts the tools you use to write a change, and I use AI tooling openly.

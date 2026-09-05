@@ -8,8 +8,7 @@ Guidance for AI coding agents (and humans) working in this repository.
 adding industrial metallurgy, oil processing, chemistry, engines and electricity to Create — on its own line, on top of
 which this project adds root-cause fixes and new industrial mechanics (sulfur recovery, pipe goggle readouts, pipeline
 pump stations, more on the issue board). The tree is based on the original mod, which is MIT-licensed; this
-project's own contributions are `GPL-2.0-only`, so the combined work is GPL — see [LICENCE.md](LICENCE.md). AI
-tooling is used openly here, under an experienced maintainer's direction. Read
+project's own contributions are `GPL-2.0-only`, so the combined work is GPL — see [LICENCE.md](LICENCE.md). Read
 [README.md](README.md) ("Why it exists" and "How it's built") and
 [CONTRIBUTING.md](CONTRIBUTING.md) first — the contribution rules there apply to agents exactly as they do to
 people. Nothing is merged until a human (me) reviews it.

@@ -49,11 +49,6 @@ Bugs are diagnosed at the root (decompiled bytecode, world data, reproductions o
 smallest correct change. New mechanics are modelled on how the real industry works and taught in-game with ponder scenes.
 Every change is explained in its commit so anyone can check the reasoning.
 
-I use Claude Code as part of that work. Every change is specified, reviewed, tested and playtested by me before it is merged;
-nothing lands on the word of a tool. The account it runs on has Anthropic's "Model Improvement" privacy setting turned off,
-which under Anthropic's consumer terms means these coding sessions are not used for model training
-(https://www.anthropic.com/news/updates-to-our-consumer-terms). Nothing here is used for training; it is used for playing.
-
 ## Licence
 
 Create: TFMG Expanded is licensed under the GNU General Public License, version 2 (`GPL-2.0-only`). The code it
