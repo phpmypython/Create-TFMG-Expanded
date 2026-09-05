@@ -77,7 +77,8 @@ public class TFMGPonderTags {
                 .add(TFMGBlocks.LARGE_PUMPJACK_HAMMER_CONNECTOR)
                 .add(TFMGBlocks.LARGE_PUMPJACK_HAMMER_HEAD)
                 .add(TFMGBlocks.LARGE_PUMPJACK_HAMMER_PART)
-    ;
+                .add(TFMGBlocks.PUMP_CASING)
+                .add(TFMGBlocks.STATION_STUB);
 
         //HELPER.addToTag(ENGINES)
         //        .add(TFMGBlocks.REGULAR_ENGINE)

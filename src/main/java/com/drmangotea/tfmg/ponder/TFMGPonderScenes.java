@@ -4,6 +4,7 @@ import com.drmangotea.tfmg.content.decoration.pipes.TFMGPipes;
 import com.drmangotea.tfmg.ponder.scenes.ChemistryScenes;
 import com.drmangotea.tfmg.ponder.scenes.ElectricityScenes;
 import com.drmangotea.tfmg.ponder.scenes.MetallurgyScenes;
+import com.drmangotea.tfmg.ponder.scenes.PipelineScenes;
 import com.drmangotea.tfmg.ponder.scenes.MiscTFMGScenes;
 import com.drmangotea.tfmg.registry.TFMGBlocks;
 import com.drmangotea.tfmg.registry.TFMGItems;
@@ -40,6 +41,12 @@ public class TFMGPonderScenes {
                 .addStoryBoard("claus_plant", ChemistryScenes::clausPlant, TFMGPonderTags.METALLURGY, TFMGPonderTags.CHEMICAL_VAT);
         HELPER.forComponents(TFMGBlocks.PUMPJACK_BASE,TFMGBlocks.PUMPJACK_CRANK,TFMGBlocks.PUMPJACK_HAMMER)
                 .addStoryBoard("pumpjack", MiscTFMGScenes::pumpjack, TFMGPonderTags.OIL_PROCESSING);
+
+        // Booster Station: building one, then what its pressure does to the line. Registered in that order,
+        // because scenes play in the order they are registered
+        HELPER.forComponents(TFMGBlocks.PUMP_CASING, TFMGBlocks.STATION_STUB, TFMGItems.PUMP_IMPELLER)
+                .addStoryBoard("pipeline_pump", PipelineScenes::pipelinePump, TFMGPonderTags.OIL_PROCESSING)
+                .addStoryBoard("pipeline_pressure", PipelineScenes::pipelinePressure, TFMGPonderTags.OIL_PROCESSING);
        // HELPER.forComponents(TFMGBlocks.REGULAR_ENGINE, TFMGBlocks.TURBINE_ENGINE, TFMGBlocks.RADIAL_ENGINE)
        //         .addStoryBoard("engines", MiscTFMGScenes::engines, TFMGPonderTags.ENGINES);
         HELPER.forComponents(TFMGBlocks.GENERATOR, TFMGBlocks.ROTOR, TFMGBlocks.STATOR, TFMGBlocks.ELECTRIC_MOTOR)
