@@ -5,10 +5,11 @@
     "1.3.0": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v1.3.0",
     "1.4.0": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v1.4.0",
     "1.5.0": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v1.5.0",
-    "1.5.1": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v1.5.1"
+    "1.5.1": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v1.5.1",
+    "2.0.0": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v2.0.0"
   },
   "promos": {
-    "1.21.1-latest": "1.5.1",
-    "1.21.1-recommended": "1.5.1"
+    "1.21.1-latest": "2.0.0",
+    "1.21.1-recommended": "2.0.0"
   }
 }
