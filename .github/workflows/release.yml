@@ -96,7 +96,7 @@ jobs:
             fi
             echo
             echo "---"
-            echo "Create: TFMG Expanded is a maintained line of Create: The Factory Must Grow, developed with AI assistance and reviewed by the maintainer. See the [README](https://github.com/${GITHUB_REPOSITORY}#what-this-is) for what it adds. Report problems with this build [here](https://github.com/${GITHUB_REPOSITORY}/issues), not to the upstream project."
+            echo "Create: TFMG Expanded is a maintained line of Create: The Factory Must Grow, developed with AI assistance and reviewed by the maintainer. See the [README](https://github.com/${GITHUB_REPOSITORY}#what-this-is) for what it adds. Report problems with this build [here](https://github.com/${GITHUB_REPOSITORY}/issues), not to the original mod."
           } > release-notes.md
           cat release-notes.md
 

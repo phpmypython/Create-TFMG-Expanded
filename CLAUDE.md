@@ -7,9 +7,8 @@ Guidance for AI coding agents (and humans) working in this repository.
 **Create: TFMG Expanded** is a continuation of Create: The Factory Must Grow by DrMangoTea — a NeoForge 1.21.1 mod
 adding industrial metallurgy, oil processing, chemistry, engines and electricity to Create — on its own line, on top of
 which this project adds root-cause fixes and new industrial mechanics (sulfur recovery, pipe goggle readouts, pipeline
-pump stations, more on the issue board). It began as a fork of Create: TFMG Community Edition because that project
-rejects AI-assisted contributions; here AI tooling is used openly, under an experienced maintainer's direction. The tree
-carries no Community Edition code — it is based on the original mod and is MIT-licensed throughout. Read
+pump stations, more on the issue board). The tree is based on the original mod and is MIT-licensed throughout. AI
+tooling is used openly here, under an experienced maintainer's direction. Read
 [README.md](README.md) ("Why it exists" and "How it's built") and
 [CONTRIBUTING.md](CONTRIBUTING.md) first — the contribution rules there apply to agents exactly as they do to
 people. Nothing is merged until a human (me) reviews it.
@@ -66,9 +65,9 @@ under `src/generated/resources/` (committed, produced by datagen — never edit 
   a fluid, block or item is a registry change: clients and servers must update together.
 * **Match the surrounding code.** Same naming, comment density and idioms as the file you are in. Don't add
   dependencies or reinvent something Create already provides.
-* **Taking upstream changes.** Upstream is the original mod, `DrMango14/Create-The_Factory_Must_Grow`. Read every
-  incoming commit before merging and check that nothing overrides one of this project's fixes. Do not take code from
-  Create: TFMG Community Edition; that project's licence keeps it out of this tree.
+* **Taking upstream changes.** Upstream is the original mod, `DrMango14/Create-The_Factory_Must_Grow`, MIT-licensed.
+  Merging from it is a deliberate choice, not a routine: read every incoming commit before merging and check that
+  nothing overrides one of this project's fixes.
 
 ## Verified facts that are easy to get wrong
 

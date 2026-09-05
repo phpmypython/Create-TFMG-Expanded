@@ -24,8 +24,7 @@ for NeoForge 1.21.1: TFMG's industrial metallurgy, oil processing, chemistry, en
 for its long-standing bugs and new industrial mechanics built the way the real industry works.
 
 **Download:** grab the latest jar from the [Releases page](https://github.com/phpmypython/Create-TFMG-Expanded/releases/latest) — it is a drop-in replacement for any TFMG 1.2.x jar (same `tfmg` mod id, world-compatible).
-It replaces TFMG in a pack and existing worlds carry over; it does not run alongside it. Coming from Create: TFMG Community Edition instead,
-be aware that blocks, items and stored data that only exist in that project are not part of this one and will not survive the swap.
+It replaces TFMG in a pack and existing worlds carry over; it does not run alongside TFMG.
 
 ## What's new here
 
@@ -40,8 +39,7 @@ Everything planned, in progress or done is on the [project board](https://github
 ## Why it exists
 
 This project began because in my Create playthrough with TFMG I hit bugs constantly, and as a software engineer my first instinct is to fix them.
-When I came across [Create: TFMG Community Edition](https://github.com/Metallurgists-of-Create/Create-TFMG-CE) I was glad to find other people doing the same, and I wanted to contribute my fixes back the way anyone using an open-source project should.
-Their contribution guidelines forbid AI-assisted contributions in any form, so the fixes live here instead, and the project has since grown well past bug fixes.
+So I forked the mod, put the fixes there, and the scope grew past bug fixing into a line of its own — the sulfur recovery, pipeline pump stations and pipe readouts above.
 
 I'm not gonna gatekeep contributions on this project because someone used a tool that is commonplace in modern software development.
 The only thing that gates contributions here is whether they're correct. See [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -62,8 +60,8 @@ which under Anthropic's consumer terms means these coding sessions are not used 
 The original mod is MIT-licensed by DrMangoTea, and this project continues it under the same licence. The notice is
 reproduced in [LICENCE.md](LICENCE.md).
 
-This project is not affiliated with or endorsed by DrMangoTea or by Metallurgists of Create. **Please do not report bugs
-from this build to either project**; open them [here](https://github.com/phpmypython/Create-TFMG-Expanded/issues) instead.
+This project is not affiliated with or endorsed by the authors of Create: The Factory Must Grow. **Please do not report
+bugs from this build to them**; open them [here](https://github.com/phpmypython/Create-TFMG-Expanded/issues) instead.
 
 ## Builds and versions
 
@@ -74,7 +72,7 @@ and a generated changelog. Locally: `./gradlew build`; the jar lands in `build/l
 
 Releases follow [semantic versioning](https://semver.org) on this project's own line: `MAJOR.MINOR.PATCH`,
 where fixes bump the patch number and new mechanics bump the minor. The numbers are not comparable
-with upstream's: `2.0.0` here is upstream 1.2.3 plus everything in this project. The in-game update
+with TFMG's: `2.0.0` here is TFMG 1.2.3 plus everything in this project. The in-game update
 checker reads this repository's `updates.json`, so it only ever points at releases from here.
 
 <br>

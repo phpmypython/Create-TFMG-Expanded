@@ -3,7 +3,7 @@
 Contributions are welcome — issues and pull requests alike. I don't ask which tools you used to write a
 change. Use an AI assistant, a decompiler, a rubber duck, or none of the above; a change is judged by whether it
 is correct, minimal, verified in game, and explained well enough that a reviewer can follow the reasoning without
-you in the room. Upstream draws a line at AI tooling; I don't, and this project exists partly because of that.
+you in the room.
 
 ## What a good contribution looks like
 
