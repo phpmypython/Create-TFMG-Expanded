@@ -127,6 +127,7 @@ public class TFMGItems {
                     .register(),
             THERMITE_POWDER = REGISTRATE.item("thermite_powder", Item::new).register(),
             STEEL_MECHANISM = REGISTRATE.item("steel_mechanism", Item::new).register(),
+            PUMP_IMPELLER = REGISTRATE.item("pump_impeller", Item::new).register(),
             CONCRETE_MIXTURE = REGISTRATE.item("concrete_mixture", Item::new).register(),
             ASPHALT_MIXTURE = REGISTRATE.item("asphalt_mixture", Item::new).register(),
             MAGNETIC_ALLOY_INGOT = REGISTRATE.item("magnetic_alloy_ingot", Item::new).register(),

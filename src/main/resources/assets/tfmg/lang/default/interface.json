@@ -100,6 +100,25 @@
   "tfmg.goggles.pipe.pressure": "P = %1$s",
   "tfmg.goggles.pipe.filter": "Filter: %1$s",
   "tfmg.goggles.pipe.no_filter": "Filter: None",
+  "tfmg.goggles.pipe.pressure_rated": "Pressure: %1$s / %2$s",
+  "tfmg.goggles.pipe.rated": "Rated %1$s",
+  "tfmg.goggles.pipe.over_rated": "Over Rating: %1$s of %2$s",
+
+  "tfmg.goggles.booster_station.not_assembled": "Not Assembled",
+  "tfmg.goggles.booster_station.flow": "Flow: %1$s",
+  "tfmg.goggles.booster_station.not_driven": "No Rotation",
+  "tfmg.goggles.booster_station.casings": "Casings: %1$s driven of %2$s",
+  "tfmg.goggles.booster_station.casing_speed": "%1$s RPM",
+  "tfmg.goggles.booster_station.incoming": "Inlet Pressure: %1$s",
+  "tfmg.goggles.booster_station.output": "Outlet Pressure: %1$s",
+  "tfmg.goggles.booster_station.output_capped": "Outlet Pressure: %1$s (max)",
+  "tfmg.goggles.booster_station.weakest_rating": "Weakest Pipe On Line: %1$s",
+  "tfmg.goggles.booster_station.over_rated": "Line Over Rating: %1$s",
+  "tfmg.goggles.booster_station.lubricated": "Lubricated (-%1$s%% stress)",
+  "tfmg.goggles.booster_station.dry": "Not Lubricated",
+
+  "advancement.tfmg.ouroboros": "Ouroboros the Plumber",
+  "advancement.tfmg.ouroboros.desc": "Feed a Pipeline Pump's output back into its own input and let the pressure find a way out.",
 
   "tfmg.direction.down": "Down",
   "tfmg.direction.up": "Up",
@@ -267,6 +286,10 @@
 
   "tfmg.subtitle.engine_sounds": "Engine Sounds",
   "tfmg.subtitle.diesel_engine_sounds": "Diesel Engine Sounds",
+  "tfmg.subtitle.pipeline.station_motor": "Booster Station Hums",
+  "tfmg.subtitle.pipeline.station_fluid": "Booster Station Pumps",
+  "tfmg.subtitle.pipeline.pipe_strain": "Pipe Strains",
+  "tfmg.subtitle.pipeline.pipe_burst": "Pipe Bursts",
 
   "tfmg.flamethrower.fuel.spread": "%s Projectile Spread",
   "tfmg.flamethrower.fuel.speed": "%s Projectile Speed",

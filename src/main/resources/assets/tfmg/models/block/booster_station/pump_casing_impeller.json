@@ -1,0 +1,56 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "tfmg:block/heavy_machinery_casing",
+		"cog": "tfmg:block/large_steel_cogwheel",
+		"shaft": "tfmg:block/shaft",
+		"shaft_end": "tfmg:block/shaft_top"
+	},
+	"elements": [
+		{
+			"name": "impeller_a",
+			"from": [4, 4, 6.5],
+			"to": [12, 12, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -0.5, 0]},
+			"faces": {
+				"north": {"uv": [0, 0.5, 10, 10.5], "texture": "#cog"},
+				"east": {"uv": [0, 11, 10, 12.5], "texture": "#cog"},
+				"south": {"uv": [0, 0.5, 10, 10.5], "texture": "#cog"},
+				"west": {"uv": [0, 11, 10, 12.5], "texture": "#cog"},
+				"up": {"uv": [0, 11, 10, 12.5], "texture": "#cog"},
+				"down": {"uv": [0, 11, 10, 12.5], "texture": "#cog"}
+			}
+		},
+		{
+			"name": "impeller_b",
+			"from": [3.251, 4.001, 6.501],
+			"to": [11.249, 11.999, 9.499],
+			"rotation": {"angle": 45, "axis": "z", "origin": [7.25, 9, 8]},
+			"faces": {
+				"north": {"uv": [0, 0.5, 10, 10.5], "texture": "#cog"},
+				"east": {"uv": [0, 11, 10, 12.5], "texture": "#cog"},
+				"south": {"uv": [0, 0.5, 10, 10.5], "texture": "#cog"},
+				"west": {"uv": [0, 11, 10, 12.5], "texture": "#cog"},
+				"up": {"uv": [0, 11, 10, 12.5], "texture": "#cog"},
+				"down": {"uv": [0, 11, 10, 12.5], "texture": "#cog"}
+			}
+		},
+		{
+			"name": "impeller_shaft",
+			"from": [6, 6, 1],
+			"to": [10, 10, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -2.5, 0]},
+			"faces": {
+				"north": {"uv": [6, 6, 10, 10], "texture": "#shaft_end"},
+				"east": {"uv": [6, 0, 10, 5], "texture": "#shaft"},
+				"south": {"uv": [6, 6, 10, 10], "texture": "#shaft_end"},
+				"west": {"uv": [6, 0, 8, 4], "texture": "#shaft"},
+				"up": {"uv": [6, 0, 10, 16], "texture": "#shaft"},
+				"down": {"uv": [6, 0, 10, 16], "texture": "#shaft"}
+			}
+		}
+	]
+}

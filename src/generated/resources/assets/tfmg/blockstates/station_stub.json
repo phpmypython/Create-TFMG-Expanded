@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tfmg:block/booster_station/station_stub",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "tfmg:block/booster_station/station_stub",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "tfmg:block/booster_station/station_stub",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "tfmg:block/booster_station/station_stub"
+    }
+  }
+}

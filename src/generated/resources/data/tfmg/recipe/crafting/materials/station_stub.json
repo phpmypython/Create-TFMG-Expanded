@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "tfmg:steel_pipe"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    },
+    "V": {
+      "item": "tfmg:steel_fluid_valve"
+    }
+  },
+  "pattern": [
+    " V ",
+    "SPS",
+    " S "
+  ],
+  "result": {
+    "count": 2,
+    "id": "tfmg:station_stub"
+  }
+}

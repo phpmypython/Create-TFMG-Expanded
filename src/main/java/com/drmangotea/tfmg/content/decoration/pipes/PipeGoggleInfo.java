@@ -2,6 +2,8 @@ package com.drmangotea.tfmg.content.decoration.pipes;
 
 import com.drmangotea.tfmg.base.lang.TFMGLang;
 import com.drmangotea.tfmg.base.lang.TFMGTexts;
+import com.drmangotea.tfmg.content.machinery.pipeline.PipePressure;
+import com.drmangotea.tfmg.content.machinery.pipeline.StationPressure;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.PipeConnection;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -13,7 +15,9 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 
@@ -63,6 +67,8 @@ public class PipeGoggleInfo {
 
         (carried.isEmpty() ? TFMGTexts.Pipe.empty() : TFMGTexts.Pipe.carrying(carried)).forGoggles(tooltip, 1);
 
+        addRatingInfo(blockEntity, tooltip);
+
         if (isPlayerSneaking) {
             for (Direction side : Iterate.directions) {
                 PipeConnection connection = pipe.interfaces.get(side);
@@ -94,6 +100,37 @@ public class PipeGoggleInfo {
         if (driving > 0)
             line.space().add(TFMGTexts.Pipe.pressure(driving));
         return line;
+    }
+
+    /**
+     * What this pipe is rated for, what a Booster Station is currently standing on it, and whether that is
+     * past the rating.
+     * <p>
+     * Only station pressure is measured against a rating - a mechanical pump's 256 into a plastic pipe is
+     * still just a pump - so both the reading and the warning come from {@link StationPressure}, not from the
+     * pressure Create shows on the faces above. Reading the two together as {@code 240 / 384} is what tells a
+     * player at a glance how much headroom a run has left, without having to crouch.
+     */
+    private static void addRatingInfo(BlockEntity blockEntity, List<Component> tooltip) {
+        Level level = blockEntity.getLevel();
+        if (level == null)
+            return;
+
+        BlockState state = blockEntity.getBlockState();
+        float stationPressure = StationPressure.get(level, blockEntity.getBlockPos());
+        boolean isRated = PipePressure.entry(state) != null;
+        // A pump lands here too - it carries a FluidTransportBehaviour - and has no rating to speak of.
+        // Nothing to say about it unless a station is actually pushing pressure through it.
+        if (!isRated && stationPressure <= 0)
+            return;
+
+        int rating = PipePressure.of(state).rating();
+        if (stationPressure > rating)
+            TFMGTexts.Pipe.overRated(stationPressure, rating).forGoggles(tooltip, 1);
+        else if (isRated && stationPressure > 0)
+            TFMGTexts.Pipe.pressureRated(stationPressure, rating).forGoggles(tooltip, 1);
+        else
+            TFMGTexts.Pipe.rated(rating).forGoggles(tooltip, 1);
     }
 
     /**

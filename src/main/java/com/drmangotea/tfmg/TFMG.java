@@ -81,6 +81,7 @@ public class TFMG {
         TFMGParticleTypes.register(modEventBus);
 
         TFMGDataComponents.register(modEventBus);
+        TFMGTriggers.register(modEventBus);
         TFMGMobEffects.register(modEventBus);
         TFMGRecipeTypes.register(modEventBus);
        // TFMGArmorMaterials.register(modEventBus);

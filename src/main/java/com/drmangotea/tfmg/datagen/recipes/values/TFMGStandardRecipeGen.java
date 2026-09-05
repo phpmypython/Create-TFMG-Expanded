@@ -160,6 +160,37 @@ public class TFMGStandardRecipeGen extends TFMGRecipeProvider {
                     .pattern("CSC")
                     .pattern("CCC")),
 
+    PUMP_IMPELLER = create(TFMGItems.PUMP_IMPELLER)
+            .unlockedBy(TFMGItems.MAGNETIC_ALLOY_INGOT::get)
+            .viaShaped(b -> b
+                    .define('S', steelSheet())
+                    .define('M', TFMGItems.MAGNETIC_ALLOY_INGOT)
+                    .pattern(" S ")
+                    .pattern("SMS")
+                    .pattern(" S ")),
+
+    PUMP_CASING = create(TFMGBlocks.PUMP_CASING)
+            .unlockedBy(TFMGItems.PUMP_IMPELLER::get)
+            .viaShaped(b -> b
+                    .define('S', steelSheet())
+                    .define('P', TFMGPipes.PIPES.get(TFMGPipes.PipeMaterial.STEEL).getPipe())
+                    .define('C', TFMGBlocks.HEAVY_MACHINERY_CASING)
+                    .define('I', TFMGItems.PUMP_IMPELLER)
+                    .pattern("IP ")
+                    .pattern("SCS")
+                    .pattern(" P ")),
+
+    STATION_STUB = create(TFMGBlocks.STATION_STUB)
+            .returns(2)
+            .unlockedBy(TFMGItems.STEEL_INGOT::get)
+            .viaShaped(b -> b
+                    .define('S', steelSheet())
+                    .define('P', TFMGPipes.PIPES.get(TFMGPipes.PipeMaterial.STEEL).getPipe())
+                    .define('V', TFMGPipes.PIPES.get(TFMGPipes.PipeMaterial.STEEL).getValve())
+                    .pattern(" V ")
+                    .pattern("SPS")
+                    .pattern(" S ")),
+
     ELECTRIC_PUMP = create(TFMGBlocks.ELECTRIC_PUMP)
             .unlockedBy(TFMGItems.CIRCUIT_BOARD::get)
             .viaShaped(b -> b

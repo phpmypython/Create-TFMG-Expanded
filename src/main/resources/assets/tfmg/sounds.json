@@ -19,5 +19,47 @@
       }
     ],
     "subtitle": "tfmg.subtitle.diesel_engine_sounds"
+  },
+  "pipeline.station_motor": {
+    "sounds": [
+      {
+        "name": "tfmg:pipeline/station_motor",
+        "type": "file",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ],
+    "subtitle": "tfmg.subtitle.pipeline.station_motor"
+  },
+  "pipeline.station_fluid": {
+    "sounds": [
+      {
+        "name": "tfmg:pipeline/station_fluid",
+        "type": "file",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ],
+    "subtitle": "tfmg.subtitle.pipeline.station_fluid"
+  },
+  "pipeline.pipe_strain": {
+    "sounds": [
+      {
+        "name": "tfmg:pipeline/pipe_strain",
+        "type": "file",
+        "attenuation_distance": 16
+      }
+    ],
+    "subtitle": "tfmg.subtitle.pipeline.pipe_strain"
+  },
+  "pipeline.pipe_burst": {
+    "sounds": [
+      {
+        "name": "tfmg:pipeline/pipe_burst",
+        "type": "file",
+        "attenuation_distance": 24
+      }
+    ],
+    "subtitle": "tfmg.subtitle.pipeline.pipe_burst"
   }
 }

@@ -46,6 +46,30 @@ public class TFMGSoundEvents {
             .subtitle("Diesel Engine Sounds")
             .category(SoundSource.BLOCKS)
             .attenuationDistance(10)
+            .build(),
+
+    PIPELINE_STATION_MOTOR = create("pipeline.station_motor")
+            .subtitle("Booster Station Hums")
+            .category(SoundSource.BLOCKS)
+            .attenuationDistance(16)
+            .build(),
+
+    PIPELINE_STATION_FLUID = create("pipeline.station_fluid")
+            .subtitle("Booster Station Pumps")
+            .category(SoundSource.BLOCKS)
+            .attenuationDistance(16)
+            .build(),
+
+    PIPELINE_PIPE_STRAIN = create("pipeline.pipe_strain")
+            .subtitle("Pipe Strains")
+            .category(SoundSource.BLOCKS)
+            .attenuationDistance(16)
+            .build(),
+
+    PIPELINE_PIPE_BURST = create("pipeline.pipe_burst")
+            .subtitle("Pipe Bursts")
+            .category(SoundSource.BLOCKS)
+            .attenuationDistance(24)
             .build();
 
     private static TFMGSoundEvents.SoundEntryBuilder create(String name) {

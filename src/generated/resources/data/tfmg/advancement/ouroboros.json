@@ -1,0 +1,28 @@
+{
+  "parent": "create:root",
+  "criteria": {
+    "pipeline_loop_burst": {
+      "trigger": "tfmg:pipeline_loop_burst"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.tfmg.ouroboros.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "tfmg:pump_casing"
+    },
+    "title": {
+      "translate": "advancement.tfmg.ouroboros"
+    }
+  },
+  "requirements": [
+    [
+      "pipeline_loop_burst"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

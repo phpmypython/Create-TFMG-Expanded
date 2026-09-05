@@ -267,6 +267,65 @@ public class TFMGTexts {
         public static LangBuilder noFilter() {
             return TFMGLang.translate("goggles.pipe.no_filter").style(ChatFormatting.DARK_GRAY);
         }
+        public static LangBuilder pressureRated(float pressure, int rating) {
+            return TFMGLang.translate("goggles.pipe.pressure_rated", TFMGLang.number(pressure),
+                    TFMGLang.number(rating)).style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder rated(int rating) {
+            return TFMGLang.translate("goggles.pipe.rated", TFMGLang.number(rating)).style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder overRated(float pressure, int rating) {
+            return TFMGLang.translate("goggles.pipe.over_rated", TFMGLang.number(pressure), TFMGLang.number(rating))
+                    .style(ChatFormatting.RED);
+        }
+    }
+
+    // Booster Station Tooltips
+    public static class BoosterStation {
+        public static LangBuilder notAssembled() {
+            return TFMGLang.translate("goggles.booster_station.not_assembled").style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder flow(Direction direction) {
+            return TFMGLang.translate("goggles.booster_station.flow",
+                    TFMGLang.translate("direction." + direction.getSerializedName())).style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder notDriven() {
+            return TFMGLang.translate("goggles.booster_station.not_driven").style(ChatFormatting.DARK_RED);
+        }
+        public static LangBuilder casings(int driven, int total) {
+            return TFMGLang.translate("goggles.booster_station.casings", driven, total).style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder casingSpeed(int rpm) {
+            return TFMGLang.translate("goggles.booster_station.casing_speed", TFMGLang.number(rpm))
+                    .style(ChatFormatting.DARK_GRAY);
+        }
+        public static LangBuilder incoming(float pressure) {
+            return TFMGLang.translate("goggles.booster_station.incoming", TFMGLang.number(pressure))
+                    .style(ChatFormatting.AQUA);
+        }
+        public static LangBuilder output(float pressure) {
+            return TFMGLang.translate("goggles.booster_station.output", TFMGLang.number(pressure))
+                    .style(ChatFormatting.GOLD);
+        }
+        public static LangBuilder outputCapped(float pressure) {
+            return TFMGLang.translate("goggles.booster_station.output_capped", TFMGLang.number(pressure))
+                    .style(ChatFormatting.GOLD);
+        }
+        public static LangBuilder weakestRating(int rating) {
+            return TFMGLang.translate("goggles.booster_station.weakest_rating", TFMGLang.number(rating))
+                    .style(ChatFormatting.GRAY);
+        }
+        public static LangBuilder overRated(int rating) {
+            return TFMGLang.translate("goggles.booster_station.over_rated", TFMGLang.number(rating))
+                    .style(ChatFormatting.RED);
+        }
+        public static LangBuilder lubricated(float discount) {
+            return TFMGLang.translate("goggles.booster_station.lubricated", TFMGLang.number(discount))
+                    .style(ChatFormatting.GREEN);
+        }
+        public static LangBuilder dry() {
+            return TFMGLang.translate("goggles.booster_station.dry").style(ChatFormatting.DARK_GRAY);
+        }
     }
 
     // Vat Tooltips

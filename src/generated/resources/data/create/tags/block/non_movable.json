@@ -1,6 +1,9 @@
 {
   "values": [
     "tfmg:oil_deposit",
+    "tfmg:pump_casing",
+    "tfmg:pipeline_pump",
+    "tfmg:station_stub",
     "tfmg:large_switch",
     "tfmg:large_transformer"
   ]

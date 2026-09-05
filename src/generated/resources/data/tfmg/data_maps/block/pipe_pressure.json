@@ -1,0 +1,124 @@
+{
+  "values": {
+    "create:encased_fluid_pipe": {
+      "decay": 6.0,
+      "rating": 384
+    },
+    "create:fluid_pipe": {
+      "decay": 6.0,
+      "rating": 384
+    },
+    "create:fluid_valve": {
+      "decay": 6.0,
+      "rating": 384
+    },
+    "create:glass_fluid_pipe": {
+      "decay": 6.0,
+      "rating": 384
+    },
+    "create:smart_fluid_pipe": {
+      "decay": 6.0,
+      "rating": 384
+    },
+    "tfmg:aluminum_fluid_valve": {
+      "decay": 3.0,
+      "rating": 640
+    },
+    "tfmg:aluminum_pipe": {
+      "decay": 3.0,
+      "rating": 640
+    },
+    "tfmg:aluminum_smart_fluid_pipe": {
+      "decay": 3.0,
+      "rating": 640
+    },
+    "tfmg:brass_fluid_valve": {
+      "decay": 6.0,
+      "rating": 512
+    },
+    "tfmg:brass_pipe": {
+      "decay": 6.0,
+      "rating": 512
+    },
+    "tfmg:brass_smart_fluid_pipe": {
+      "decay": 6.0,
+      "rating": 512
+    },
+    "tfmg:cast_iron_fluid_valve": {
+      "decay": 4.0,
+      "rating": 768
+    },
+    "tfmg:cast_iron_pipe": {
+      "decay": 4.0,
+      "rating": 768
+    },
+    "tfmg:cast_iron_smart_fluid_pipe": {
+      "decay": 4.0,
+      "rating": 768
+    },
+    "tfmg:encased_aluminum_pipe": {
+      "decay": 3.0,
+      "rating": 640
+    },
+    "tfmg:encased_brass_pipe": {
+      "decay": 6.0,
+      "rating": 512
+    },
+    "tfmg:encased_cast_iron_pipe": {
+      "decay": 4.0,
+      "rating": 768
+    },
+    "tfmg:encased_plastic_pipe": {
+      "decay": 8.0,
+      "rating": 192
+    },
+    "tfmg:encased_steel_pipe": {
+      "decay": 2.0,
+      "rating": 1536
+    },
+    "tfmg:glass_aluminum_pipe": {
+      "decay": 3.0,
+      "rating": 640
+    },
+    "tfmg:glass_brass_pipe": {
+      "decay": 6.0,
+      "rating": 512
+    },
+    "tfmg:glass_cast_iron_pipe": {
+      "decay": 4.0,
+      "rating": 768
+    },
+    "tfmg:glass_plastic_pipe": {
+      "decay": 8.0,
+      "rating": 192
+    },
+    "tfmg:glass_steel_pipe": {
+      "decay": 2.0,
+      "rating": 1536
+    },
+    "tfmg:plastic_fluid_valve": {
+      "decay": 8.0,
+      "rating": 192
+    },
+    "tfmg:plastic_pipe": {
+      "decay": 8.0,
+      "rating": 192
+    },
+    "tfmg:plastic_smart_fluid_pipe": {
+      "decay": 8.0,
+      "rating": 192
+    },
+    "tfmg:steel_fluid_valve": {
+      "decay": 2.0,
+      "rating": 1536
+    },
+    "tfmg:steel_pipe": {
+      "decay": 2.0,
+      "rating": 1536
+    },
+    "tfmg:steel_smart_fluid_pipe": {
+      "decay": 2.0,
+      "rating": 1536
+    }
+  }
+}

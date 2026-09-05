@@ -15,8 +15,10 @@ import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
@@ -41,6 +43,9 @@ public class TFMGDatagen {
        //
 
 
+        generator.addProvider(event.includeServer(), new TFMGDataMapProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new AdvancementProvider(output, lookupProvider,
+                event.getExistingFileHelper(), List.of(new TFMGAdvancements())));
         generator.addProvider(event.includeServer(),new TFMGStandardRecipeGen(output,lookupProvider));
         generator.addProvider(event.includeServer(), new TFMGMechanicalCraftingRecipeGen(output,lookupProvider));
         generator.addProvider(event.includeServer(), new TFMGSequencedAssemblyRecipeGen(output, lookupProvider));

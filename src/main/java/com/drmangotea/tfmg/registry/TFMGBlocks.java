@@ -78,6 +78,10 @@ import com.drmangotea.tfmg.content.engines.types.turbine_engine.TurbineEngineGen
 import com.drmangotea.tfmg.content.items.CoalCokeBlockItem;
 import com.drmangotea.tfmg.content.items.weapons.explosives.napalm.NapalmBombBlock;
 import com.drmangotea.tfmg.content.machinery.metallurgy.blast_furnace.BlastFurnaceHatchBlock;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.BoosterStationGenerator;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.PipelinePumpBlock;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.PumpCasingBlock;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.StationStubBlock;
 import com.drmangotea.tfmg.content.machinery.metallurgy.blast_furnace.BlastFurnaceOutputBlock;
 import com.drmangotea.tfmg.content.machinery.metallurgy.blast_furnace.reinforcement.BlastFurnaceReinforcementBlockItem;
 import com.drmangotea.tfmg.content.machinery.metallurgy.blast_furnace.reinforcement.BlastFurnaceReinforcementWallBlock;
@@ -796,6 +800,54 @@ public class TFMGBlocks {
                     .transform(TFMGStress.setImpact(4.0))
                     .blockstate(BlockStateGen.directionalBlockProvider(true))
                     .item()
+                    .build()
+                    .register();
+
+    public static final BlockEntry<PumpCasingBlock> PUMP_CASING =
+            REGISTRATE.block("pump_casing", PumpCasingBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .properties(p -> p.strength(4.5F))
+                    .transform(pickaxeOnly())
+                    .tag(AllTags.AllBlockTags.NON_MOVABLE.tag)
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .blockstate(new BoosterStationGenerator()::generate)
+                    .item()
+                    .model((c, p) -> p.withExistingParent(c.getName(),
+                            p.modLoc("block/booster_station/" + BoosterStationGenerator.itemModelName(true))))
+                    .build()
+                    .register();
+
+    /**
+     * A pump casing that has been built into a station. It has no item and is never placed by hand: assembly
+     * swaps every casing in the row for one of these, which is what makes an assembled casing show up as a
+     * Pipeline Pump everywhere a block is named.
+     */
+    public static final BlockEntry<PipelinePumpBlock> PIPELINE_PUMP =
+            REGISTRATE.block("pipeline_pump", PipelinePumpBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .properties(p -> p.strength(4.5F))
+                    .transform(pickaxeOnly())
+                    .tag(AllTags.AllBlockTags.NON_MOVABLE.tag)
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .blockstate(new BoosterStationGenerator()::generate)
+                    .loot((lt, block) -> lt.dropOther(block, TFMGBlocks.PUMP_CASING.get().asItem()))
+                    .register();
+
+    public static final BlockEntry<StationStubBlock> STATION_STUB =
+            REGISTRATE.block("station_stub", StationStubBlock::new)
+                    .lang("Pipeline Stub")
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .properties(p -> p.strength(4.5F))
+                    .transform(pickaxeOnly())
+                    .tag(AllTags.AllBlockTags.NON_MOVABLE.tag)
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .blockstate(new BoosterStationGenerator()::generate)
+                    .item()
+                    .model((c, p) -> p.withExistingParent(c.getName(),
+                            p.modLoc("block/booster_station/" + BoosterStationGenerator.itemModelName(false))))
                     .build()
                     .register();
 

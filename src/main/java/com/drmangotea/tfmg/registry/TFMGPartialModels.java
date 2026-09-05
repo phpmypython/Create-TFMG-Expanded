@@ -100,6 +100,11 @@ public class TFMGPartialModels {
             LARGE_CENTRIFUGE_ALONE = block("industrial_mixer/large_centrifuge_alone"),
             SURFACE_SCANNER_LIGHT = block("surface_scanner/light");
 
+    // Booster Station
+    public static final PartialModel
+            PUMP_CASING_IMPELLER = block("booster_station/pump_casing_impeller"),
+            PUMP_CASING_SHAFT = block("booster_station/pump_casing_shaft");
+
     //Display Segments
 
     public static final List<PartialModel> SEGMENTS = new ArrayList<>();

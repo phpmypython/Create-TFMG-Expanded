@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "tfmg:block/booster_station/pump_casing_unfinished"
+    },
+    "facing=north": {
+      "model": "tfmg:block/booster_station/pump_casing_unfinished",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tfmg:block/booster_station/pump_casing_unfinished",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tfmg:block/booster_station/pump_casing_unfinished",
+      "y": 180
+    }
+  }
+}

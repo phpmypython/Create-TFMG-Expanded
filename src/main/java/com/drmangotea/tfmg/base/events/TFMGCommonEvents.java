@@ -32,6 +32,7 @@ import com.drmangotea.tfmg.content.machinery.oil_processing.distillation_tower.c
 import com.drmangotea.tfmg.content.machinery.oil_processing.distillation_tower.output.DistillationOutputBlockEntity;
 import com.drmangotea.tfmg.content.machinery.oil_processing.pumpjack.base.PumpjackBaseBlockEntity;
 import com.drmangotea.tfmg.content.machinery.vat.base.VatBlockEntity;
+import com.drmangotea.tfmg.registry.TFMGDataMaps;
 import com.drmangotea.tfmg.registry.TFMGDataComponents;
 import com.drmangotea.tfmg.registry.TFMGItems;
 import com.simibubi.create.Create;
@@ -47,6 +48,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
+import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
 
 @EventBusSubscriber
@@ -114,6 +116,11 @@ public class TFMGCommonEvents {
             CokeOvenBlockEntity.registerCapabilities(event);
             AirIntakeBlockEntity.registerCapabilities(event);
             WindingMachineBlockEntity.registerCapabilities(event);
+        }
+
+        @SubscribeEvent
+        public static void registerDataMaps(RegisterDataMapTypesEvent event) {
+            TFMGDataMaps.register(event);
         }
 
         @SubscribeEvent

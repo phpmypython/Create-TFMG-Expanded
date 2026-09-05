@@ -83,6 +83,10 @@ import com.drmangotea.tfmg.content.machinery.misc.firebox.FireboxBlockEntity;
 import com.drmangotea.tfmg.content.machinery.misc.flarestack.FlarestackBlockEntity;
 import com.drmangotea.tfmg.content.machinery.misc.gas_lamp.GasLampBlockEntity;
 import com.drmangotea.tfmg.content.machinery.misc.machine_input.MachineInputBlockEntity;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.PumpCasingBlockEntity;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.PumpCasingRenderer;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.PumpCasingVisual;
+import com.drmangotea.tfmg.content.machinery.pipeline.booster_station.StationStubBlockEntity;
 import com.drmangotea.tfmg.content.machinery.misc.smokestack.SmokestackBlockEntity;
 import com.drmangotea.tfmg.content.machinery.misc.winding_machine.WindingMachineBlockEntity;
 import com.drmangotea.tfmg.content.machinery.misc.winding_machine.WindingMachineRenderer;
@@ -266,6 +270,16 @@ public class TFMGBlockEntities {
             .blockEntity("distillation_tower_controller", DistillationControllerBlockEntity::new)
             .validBlocks(TFMGBlocks.STEEL_DISTILLATION_CONTROLLER)
             .renderer(() -> DistillationControllerRenderer::new)
+            .register();
+    public static final BlockEntityEntry<PumpCasingBlockEntity> PUMP_CASING = REGISTRATE
+            .blockEntity("pump_casing", PumpCasingBlockEntity::new)
+            .visual(() -> PumpCasingVisual::new)
+            .validBlocks(TFMGBlocks.PUMP_CASING, TFMGBlocks.PIPELINE_PUMP)
+            .renderer(() -> PumpCasingRenderer::new)
+            .register();
+    public static final BlockEntityEntry<StationStubBlockEntity> STATION_STUB = REGISTRATE
+            .blockEntity("station_stub", StationStubBlockEntity::new)
+            .validBlocks(TFMGBlocks.STATION_STUB)
             .register();
     public static final BlockEntityEntry<MachineInputBlockEntity> MACHINE_INPUT = REGISTRATE
             .blockEntity("machine_input", MachineInputBlockEntity::new)

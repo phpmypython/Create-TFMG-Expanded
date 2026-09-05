@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "tfmg:heavy_machinery_casing"
+    },
+    "I": {
+      "item": "tfmg:pump_impeller"
+    },
+    "P": {
+      "item": "tfmg:steel_pipe"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    }
+  },
+  "pattern": [
+    "IP ",
+    "SCS",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "tfmg:pump_casing"
+  }
+}
