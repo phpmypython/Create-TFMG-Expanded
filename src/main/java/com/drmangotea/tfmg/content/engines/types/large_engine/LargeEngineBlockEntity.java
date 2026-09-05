@@ -73,7 +73,7 @@ public class LargeEngineBlockEntity extends AbstractEngineBlockEntity {
 
     @Override
     public List<TagKey<Fluid>> getSupportedFuels() {
-        return List.of(TFMGTags.TFMGFluidTags.DIESEL.tag, TFMGTags.TFMGFluidTags.KEROSENE.tag, TFMGTags.TFMGFluidTags.NAPHTHA.tag, TFMGTags.TFMGFluidTags.FURNACE_GAS.tag);
+        return List.of(TFMGTags.TFMGFluidTags.DIESEL.tag, TFMGTags.TFMGFluidTags.KEROSENE.tag, TFMGTags.TFMGFluidTags.NAPHTHA.tag, TFMGTags.TFMGFluidTags.FURNACE_GAS.tag, TFMGTags.TFMGFluidTags.SOUR_GAS.tag);
     }
 
     @Override

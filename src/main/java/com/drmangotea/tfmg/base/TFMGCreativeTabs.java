@@ -127,9 +127,11 @@ public class TFMGCreativeTabs {
         CompoundTag creosoteTag = new CompoundTag();
         creosoteTag.putString("creosote", "c:creosote");
         creosoteTag.putString("furnace_gas", "c:furnace_gas");
+        creosoteTag.putString("sour_gas", "c:sour_gas");
         CompoundTag creosoteTagName = new CompoundTag();
         creosoteTagName.putString("creosote", "fluid.tfmg.creosote");
         creosoteTagName.putString("furnace_gas", "fluid.tfmg.furnace_gas");
+        creosoteTagName.putString("sour_gas", "fluid.tfmg.sour_gas");
         //
         CompoundTag dieselTag = new CompoundTag();
         dieselTag.putString("diesel", "c:diesel");
