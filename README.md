@@ -24,7 +24,8 @@ for NeoForge 1.21.1: TFMG's industrial metallurgy, oil processing, chemistry, en
 for its long-standing bugs and new industrial mechanics built the way the real industry works.
 
 **Download:** grab the latest jar from the [Releases page](https://github.com/phpmypython/Create-TFMG-Expanded/releases/latest) — it is a drop-in replacement for any TFMG 1.2.x jar (same `tfmg` mod id, world-compatible).
-It replaces TFMG or TFMG Community Edition in a pack and existing worlds carry over; it does not run alongside them.
+It replaces TFMG in a pack and existing worlds carry over; it does not run alongside it. Coming from Create: TFMG Community Edition instead,
+be aware that blocks, items and stored data that only exist in that project are not part of this one and will not survive the swap.
 
 ## What's new here
 
