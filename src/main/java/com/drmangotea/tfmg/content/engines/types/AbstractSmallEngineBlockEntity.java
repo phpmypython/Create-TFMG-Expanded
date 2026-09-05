@@ -15,6 +15,7 @@ import com.drmangotea.tfmg.registry.TFMGFluids;
 import com.drmangotea.tfmg.registry.TFMGItems;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
+import com.simibubi.create.foundation.item.ItemHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -210,6 +211,13 @@ public abstract class AbstractSmallEngineBlockEntity extends AbstractEngineBlock
         componentsInventory.deserializeNBT(registries, compound.getCompound("Components"));
         super.read(compound, registries, clientPacket);
         controller = BlockPos.of(compound.getLong("Controller"));
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        ItemHelper.dropContents(level, worldPosition, componentsInventory);
+        upgrade.ifPresent(engineUpgrade -> dropItem(engineUpgrade.getItem().getDefaultInstance()));
     }
 
     public int engineLength() {
