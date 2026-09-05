@@ -100,7 +100,6 @@ public class VatBlockEntity extends SmartBlockEntity implements IHaveGoggleInfor
     //machines
     public Map<BlockPos, String> machineMap = new HashMap<>();
     public Map<BlockPos, Boolean> operationalMachinesMap = new HashMap<>();
-    public boolean areMachinesValid = true;
     //processing data
     float efficiency = 1;
     int heatLevel = 0;
@@ -368,11 +367,17 @@ public class VatBlockEntity extends SmartBlockEntity implements IHaveGoggleInfor
                 continue;
             boolean doesntMatch = false;
 
-            if (!Objects.equals(testedRecipe.machines, machineMap.values().stream().toList())) {
-                continue;
-            }
+            // Only attachments that can actually operate count towards a recipe's machine list. An
+            // idle one used to veto every recipe in the vat, including the ones that never asked for
+            // it, so bolting an undriven compressor onto a mixing vat stopped it dead with nothing
+            // in-game to say why. A recipe that genuinely needs the stalled machine still fails,
+            // because its operation is no longer in the list to match.
+            List<String> activeMachines = machineMap.entrySet().stream()
+                    .filter(entry -> operationalMachinesMap.getOrDefault(entry.getKey(), true))
+                    .map(Map.Entry::getValue)
+                    .toList();
 
-            if (!areMachinesValid) {
+            if (!Objects.equals(testedRecipe.machines, activeMachines)) {
                 continue;
             }
 
@@ -518,7 +523,6 @@ public class VatBlockEntity extends SmartBlockEntity implements IHaveGoggleInfor
             }
         }
 
-        areMachinesValid = operationalMachinesMap.values().stream().allMatch((op) -> op == true);
 
 
         if (syncCooldown > 0) {
