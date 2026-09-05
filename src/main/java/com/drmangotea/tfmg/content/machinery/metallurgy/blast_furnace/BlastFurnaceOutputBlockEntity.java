@@ -224,8 +224,17 @@ public class BlastFurnaceOutputBlockEntity extends SmartBlockEntity implements I
                     tuyereBE = null;
                     return;
                 }
+                // Move the hatch, or break and replace it, and tuyerePos is re-elected while tuyereBE
+                // still points at the old block entity, which never fills again - the batch then hangs
+                // on its hot-air check forever. Drop the reference as soon as it stops matching.
+                if (tuyereBE != null
+                        && (tuyereBE.isRemoved() || tuyerePos == null || !tuyereBE.getBlockPos().equals(tuyerePos)))
+                    tuyereBE = null;
                 if (tuyereBE == null && tuyerePos != null)
-                    tuyereBE = (BlastFurnaceHatchBlockEntity) level.getBlockEntity(tuyerePos);
+                    // Checked rather than cast: re-fetching more often would otherwise widen the window
+                    // in which a hatch broken this tick throws a ClassCastException here.
+                    tuyereBE = level.getBlockEntity(tuyerePos) instanceof BlastFurnaceHatchBlockEntity hatch
+                            ? hatch : null;
                 if (tuyereBE!=null)
                     if (tuyereBE.tank.getFluidAmount() < recipe.hotAirUsage || !tuyereBE.tank.getFluid().getFluid().isSame(TFMGFluids.HOT_AIR.getSource()))
                         return;
@@ -299,6 +308,16 @@ public class BlastFurnaceOutputBlockEntity extends SmartBlockEntity implements I
         }
     }
 
+    /**
+     * Take what is lying in the shaft above the furnace: fuel onto the fuel counter, flux into the flux
+     * slot, everything else into the ore input.
+     * <p>
+     * Every item entity in the shaft is considered, not only the first one, so a shaft holding coke and
+     * ore side by side empties instead of stalling on whichever landed first. Nothing is routed into a
+     * slot it does not belong in either: when the fuel counter is full the coke dust is left where it
+     * lies rather than falling through into the single-type ore slot, which used to fill that slot with
+     * dust and make the furnace refuse every ore that arrived afterwards.
+     */
     public void collectItems() {
 
         List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(this.getBlockPos().relative(getBlockState().getValue(FACING).getOpposite()).above()));
@@ -306,34 +325,50 @@ public class BlastFurnaceOutputBlockEntity extends SmartBlockEntity implements I
         if (items.isEmpty())
             return;
 
-        ItemStack itemStack = items.get(0).getItem();
-
-        for (int i = 0; i < 64; i++) {
-
+        boolean changed = false;
+        for (ItemEntity item : items) {
+            ItemStack itemStack = item.getItem();
             if (itemStack.isEmpty())
-                return;
+                continue;
 
-            if (itemStack.is(TFMGTags.TFMGItemTags.BLAST_FURNACE_FUEL.tag) && fuel < STORAGE_SPACE) {
-
-                fuel++;
-                itemStack.shrink(1);
+            if (itemStack.is(TFMGTags.TFMGItemTags.BLAST_FURNACE_FUEL.tag)) {
+                int taken = Math.min(STORAGE_SPACE - fuel, itemStack.getCount());
+                if (taken > 0) {
+                    fuel += taken;
+                    itemStack.shrink(taken);
+                    changed = true;
+                }
                 continue;
             }
-            if (itemStack.is(TFMGTags.TFMGItemTags.FLUX.tag) && fluxInventory.getItem(0).getCount() < itemStack.getMaxStackSize()) {
-                if (fluxInventory.isEmpty() || fluxInventory.getItem(0).is(itemStack.getItem())) {
-                    fluxInventory.setItem(0, new ItemStack(itemStack.getItem(), fluxInventory.getItem(0).getCount() + 1));
-                    itemStack.shrink(1);
-                    continue;
-                }
+
+            if (itemStack.is(TFMGTags.TFMGItemTags.FLUX.tag)) {
+                changed |= collectInto(fluxInventory, itemStack);
+                continue;
             }
-            if (inputInventory.getItem(0).getCount() < itemStack.getMaxStackSize()) {
-                if (inputInventory.isEmpty() || inputInventory.getItem(0).is(itemStack.getItem())) {
-                    inputInventory.setItem(0, new ItemStack(itemStack.getItem(), inputInventory.getItem(0).getCount() + 1));
-                    itemStack.shrink(1);
-                    continue;
-                }
-            }
+
+            changed |= collectInto(inputInventory, itemStack);
         }
+
+        if (changed && !level.isClientSide) {
+            setChanged();
+            sendData();
+        }
+    }
+
+    /** Moves as much of the stack as fits into a single-slot inventory that only ever holds one kind of item. */
+    private boolean collectInto(SmartInventory inventory, ItemStack itemStack) {
+
+        ItemStack slot = inventory.getItem(0);
+        if (!slot.isEmpty() && !slot.is(itemStack.getItem()))
+            return false;
+
+        int taken = Math.min(inventory.getStackLimit(0, itemStack) - slot.getCount(), itemStack.getCount());
+        if (taken <= 0)
+            return false;
+
+        inventory.setItem(0, new ItemStack(itemStack.getItem(), slot.getCount() + taken));
+        itemStack.shrink(taken);
+        return true;
     }
 
     @Override
