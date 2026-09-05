@@ -192,15 +192,25 @@ public class TFMGItems {
    //        SIMPLE_ENGINE_CYLINDER = REGISTRATE.item("simple_engine_cylinder", CylinderItem::new).register(),
    //        ENGINE_CYLINDER = REGISTRATE.item("engine_cylinder", CylinderItem::new).register(),
    //        TURBINE_BLADE = REGISTRATE.item("turbine_blade", CylinderItem::new).register();
+    // A wound spool holds 1000 turns of wire: onCraftedBy, the three crafting recipes and
+    // TFMGCreativeTabs all use it, and SpoolItem#getBarWidth normalises by it. Carrying it as a
+    // default component means a spool that never went through one of those paths - /give, a
+    // datapack, or anything crafted before the recipes started setting it - still reads as full
+    // instead of as a stack with no amount at all. The Empty Spool deliberately has no default.
+    private static final int FULL_SPOOL = 1000;
+
     public static final ItemEntry<SpoolItem>
             EMPTY_SPOOL = spoolItem("empty", 0x000000, TFMG.asResource("empty"))
             .recipe((c, p) -> p.stonecutting(DataIngredient.items(TFMGBlocks.HARDENED_PLANKS.asItem()), RecipeCategory.BUILDING_BLOCKS, c, 1))
             .register(),
             COPPER_SPOOL = spoolItem("copper", 0xD8735A, TFMG.asResource("copper"))
+                    .properties(p -> p.component(TFMGDataComponents.SPOOL_AMOUNT, FULL_SPOOL))
                     .register(),
             ALUMINUM_SPOOL = spoolItem("aluminum", 0xEDEFEF, TFMG.asResource("aluminum"))
+                    .properties(p -> p.component(TFMGDataComponents.SPOOL_AMOUNT, FULL_SPOOL))
                     .register(),
             CONSTANTAN_SPOOL = spoolItem("constantan", 0xCFC2A8, TFMG.asResource("constantan"))
+                    .properties(p -> p.component(TFMGDataComponents.SPOOL_AMOUNT, FULL_SPOOL))
                     .register();
 
     public static final ItemEntry<BetterSpoolItem> DEBUG_SPOOL =
