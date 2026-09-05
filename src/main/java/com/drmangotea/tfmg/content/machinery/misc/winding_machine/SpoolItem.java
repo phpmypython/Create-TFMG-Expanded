@@ -24,6 +24,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -121,7 +122,13 @@ public class SpoolItem extends Item {
 
         if (Objects.equals(cableTypeKey, TFMG.asResource("empty")))
             return InteractionResult.PASS;
-        Direction direction = level.getBlockState(pos).getValue(FACING);
+        // FACING is the vanilla six-way property, which almost no block carries. Only a cable
+        // connector - or a block pointing at one - has anything to say here; leave the rest to
+        // vanilla interaction rather than throwing out of the server-side interaction path.
+        BlockState clickedState = level.getBlockState(pos);
+        if (!clickedState.hasProperty(FACING))
+            return InteractionResult.PASS;
+        Direction direction = clickedState.getValue(FACING);
         for (int i = 0; i < 64; i++) {
             if (level.getBlockEntity(pos.relative(direction)) instanceof CableConnectorBlockEntity) {
                 pos = pos.relative(direction);
