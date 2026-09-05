@@ -41,13 +41,16 @@ public class PumpjackCrankBlockEntity extends KineticBlockEntity {
 
     private void setAngle() {
         if (level.getBlockEntity(getBlockPos().below()) instanceof MachineInputBlockEntity) {
-            float time;
+            // double, not float: game time grows without bound and a float product stops
+            // resolving single ticks once it passes about 1.05e7 (roughly six days of world
+            // runtime), at which point consecutive ticks yield the same angle again.
+            double time;
             if (level.isClientSide) {
                 time = AnimationTickHolder.getRenderTime(getLevel());
-            } else time = level.getBlockTicks().hashCode();
+            } else time = level.getGameTime();
             float speed_amogus = Math.min(getMachineInputSpeed() / 6, (float) 10);
             if (speed_amogus != 0) {
-                angle = (time * speed_amogus * 3 / 10f) % 360;
+                angle = (float) ((time * speed_amogus * 3 / 10f) % 360);
                 angle = angle / 180f * (float) Math.PI;
                 angle = (float) Math.toDegrees(angle);
             } else angle = 180;
