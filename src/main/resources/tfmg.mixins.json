@@ -4,6 +4,7 @@
   "package": "com.drmangotea.tfmg.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "tfmg.refmap.json",
+  "plugin": "com.drmangotea.tfmg.mixin.TFMGMixinPlugin",
   "mixins": [
     "BuiltInRegistriesMixin",
     "FluidPipeBlockMixin",
@@ -18,7 +19,8 @@
     "accessor.ProcessingRecipeAccessor",
     "accessor.SequencedAssemblyRecipeAccessor",
     "accessor.SlidingDoorBlockEntityAccessor",
-    "accessor.TankSegmentAccessor"
+    "accessor.TankSegmentAccessor",
+    "compat.propulsion.VatHeatConsumerMixin"
   ],
   "client": [
     "client.FluidPipeBlockEntityGoggleMixin",
