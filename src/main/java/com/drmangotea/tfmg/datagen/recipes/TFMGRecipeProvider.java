@@ -471,8 +471,8 @@ public class TFMGRecipeProvider extends RecipeProvider {
             return AllBlocks.COGWHEEL.get();
         }
 
-        public static ItemLike rubber() {
-            return TFMGItems.RUBBER_SHEET.get();
+        public static TagKey<Item> rubber() {
+            return TFMGTags.TFMGItemTags.PLATES_RUBBER.tag;
         }
 
         public static TagKey<Item> brassIngot() {

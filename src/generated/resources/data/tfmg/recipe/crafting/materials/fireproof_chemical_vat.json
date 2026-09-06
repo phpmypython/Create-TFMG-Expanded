@@ -12,7 +12,7 @@
       "item": "tfmg:fireproof_bricks"
     },
     "R": {
-      "item": "tfmg:rubber_sheet"
+      "tag": "c:plates/rubber"
     },
     "T": {
       "item": "tfmg:steel_chemical_vat"

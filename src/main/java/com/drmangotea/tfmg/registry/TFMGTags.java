@@ -77,6 +77,7 @@ public class TFMGTags {
         NUGGETS_LITHIUM(COMMON, "nuggets/lithium"),
         ORES_LITHIUM(COMMON, "ores/lithium"),
         PLATES_CAST_IRON(COMMON, "plates/cast_iron"),
+        PLATES_RUBBER(COMMON, "plates/rubber"),
         RAW_LITHIUM(COMMON, "raw_materials/lithium"),
         RODS_STEEL(COMMON, "rods/steel"),
         SPOOLS,

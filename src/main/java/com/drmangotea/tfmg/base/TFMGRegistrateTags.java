@@ -5,6 +5,7 @@ import com.drmangotea.tfmg.registry.TFMGTags;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -25,6 +26,11 @@ public class TFMGRegistrateTags {
 
         prov.tag(Tags.Items.RODS)
                 .add(Items.STICK);
+
+        // Create: Rubberworks puts no item tags on its rubber sheet, so it cannot join
+        // c:plates/rubber on its own. Optional so the tag also loads without that mod.
+        prov.tag(TFMGTags.TFMGItemTags.PLATES_RUBBER.tag)
+                .addOptional(ResourceLocation.fromNamespaceAndPath("rubberworks", "rubber_sheet"));
     }
     private static void genBlockTags(RegistrateTagsProvider<Block> provIn) {
         TagGen.CreateTagsProvider<Block> prov = new TagGen.CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
