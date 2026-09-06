@@ -2,10 +2,11 @@
   "homepage": "https://github.com/phpmypython/Create-TFMG-Expanded/releases",
   "1.21.1": {
     "2.0.0": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v2.0.0",
-    "2.0.1": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v2.0.1"
+    "2.0.1": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v2.0.1",
+    "2.0.2": "https://github.com/phpmypython/Create-TFMG-Expanded/releases/tag/v2.0.2"
   },
   "promos": {
-    "1.21.1-latest": "2.0.1",
-    "1.21.1-recommended": "2.0.1"
+    "1.21.1-latest": "2.0.2",
+    "1.21.1-recommended": "2.0.2"
   }
 }
