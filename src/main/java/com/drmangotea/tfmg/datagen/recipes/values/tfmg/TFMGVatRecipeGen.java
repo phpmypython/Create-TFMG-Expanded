@@ -63,7 +63,7 @@ public class TFMGVatRecipeGen extends VatRecipeGen {
     RUBBER = create("rubber", b -> ((VatMachineRecipe.Builder<VatMachineRecipe>) b)
             .require(SizedFluidIngredient.of(heavyOil(), 250))
             .require(sulfurDust())
-            .output(rubber())
+            .output(TFMGItems.RUBBER_SHEET)
             .duration(120)
             .values(heatedmixing(true))),
 

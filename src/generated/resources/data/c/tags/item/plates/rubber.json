@@ -1,0 +1,9 @@
+{
+  "values": [
+    "tfmg:rubber_sheet",
+    {
+      "id": "rubberworks:rubber_sheet",
+      "required": false
+    }
+  ]
+}

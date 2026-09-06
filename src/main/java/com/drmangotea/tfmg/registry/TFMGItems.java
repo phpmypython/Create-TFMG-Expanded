@@ -91,7 +91,7 @@ public class TFMGItems {
             LIMESAND = taggedIngredient("limesand", TFMGItemTags.FLUX.tag),
             SULFUR_DUST = taggedIngredient("sulfur_dust", TFMGItemTags.DUSTS_SULFUR.tag, Tags.Items.DUSTS),
             NITRATE_DUST = taggedIngredient("nitrate_dust", TFMGItemTags.DUSTS_SALTPETER.tag, Tags.Items.DUSTS),
-            RUBBER_SHEET = taggedIngredient("rubber_sheet", TFMGItemTags.INGOTS_RUBBER.tag, PLATES.tag),
+            RUBBER_SHEET = taggedIngredient("rubber_sheet", TFMGItemTags.INGOTS_RUBBER.tag, TFMGItemTags.PLATES_RUBBER.tag, PLATES.tag),
             SILICON_INGOT = taggedIngredient("silicon_ingot", TFMGItemTags.INGOTS_SILICON.tag, CREATE_INGOTS.tag),
             CRUSHED_LITHIUM = taggedIngredient("crushed_raw_lithium", AllTags.AllItemTags.CRUSHED_RAW_MATERIALS.tag)
             ;
