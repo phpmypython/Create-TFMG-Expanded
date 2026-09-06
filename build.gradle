@@ -126,6 +126,18 @@ sourceSets.main.resources.srcDir generateModMetadata
 // To avoid having to run "generateModMetadata" manually, make it run on every project reload
 neoForge.ideSyncTask generateModMetadata
 
+// Ship the licence texts with every jar, alongside the licence field in neoforge.mods.toml.
+// The MDK convention appends the archive base name so the entries at the jar root stay distinct
+// from another mod's. The sources are a list because from(a, b, closure) binds to the varargs
+// overload, which takes the closure as a source and makes the jar depend on itself; the archive
+// name is read here because the rename closure runs at execution time, without the project.
+tasks.named('jar', Jar) {
+    def archivesBaseName = base.archivesName.get()
+    from([rootProject.file('LICENCE.md'), rootProject.file('LICENSE-GPL-2.0.txt')]) {
+        rename { "${it}_${archivesBaseName}" }
+    }
+}
+
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
