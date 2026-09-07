@@ -49,6 +49,10 @@ public class DistillationControllerBlockEntity extends SmartBlockEntity implemen
 
     public DistillationRecipe recipe;
 
+    /** Last answer of {@link #hasWorkForHeat()} and the tick it was worked out on. */
+    private boolean hasWorkForHeat;
+    private long hasWorkForHeatTick = -1;
+
     LerpedFloat angle = LerpedFloat.angular();
 
     protected IFluidHandler fluidCapability;
@@ -128,14 +132,8 @@ public class DistillationControllerBlockEntity extends SmartBlockEntity implemen
 
         if (recipe.getFluidResults().toArray().length != getOutputs().toArray().length)
             return;
-        if (be.isController()) {
-            if (be.getHeight() < outputs.toArray().length * 2 || (((FluidTankBlockEntityAccessor)be).tfmg$getWidth() < 2 && outputs.toArray().length > 3))
-                return;
-        }  else {
-            if (be.getControllerBE() != null)
-                if (be.getControllerBE().getHeight() < outputs.toArray().length * 2 || ((FluidTankBlockEntityAccessor)be.getControllerBE()).tfmg$getWidth() < 2)
-                    return;
-        }
+        if (!towerCanHoldOutputs(be, outputs.size()))
+            return;
 
         for (DistillationOutputBlockEntity be1 : outputs) {
             if (be1.tank.getSpace() == 0&&be1.mode.get() == DistillationOutputBlockEntity.DistillationOutputMode.KEEP_FLUID)
@@ -189,6 +187,60 @@ public class DistillationControllerBlockEntity extends SmartBlockEntity implemen
         TFMGUtils.createFluidTooltip(this,tooltip);
 
         return true;
+    }
+
+    /**
+     * Whether this tower would distil if it were heated: outputs, a tank tall and wide enough to hold
+     * them, and a recipe matching what is in this controller's tank.
+     *
+     * <p>{@link #manageRecipe()} cannot answer that question, because it returns early while the tank
+     * reports no heat and so never fills in {@link #recipe} until the tower is already hot. A heat
+     * source has to decide whether to burn before that, which is what this is for. It asks everything
+     * {@link #manageRecipe()} asks that does not depend on heat, so a tower that could never run does
+     * not burn fuel waiting to.
+     *
+     * <p>Worked out at most once a tick and remembered, since every heat source under the tower asks
+     * every tick and {@link #getMatchingRecipes()} walks the outputs once per candidate recipe.
+     */
+    public boolean hasWorkForHeat() {
+        long tick = level.getGameTime();
+        if (tick != hasWorkForHeatTick) {
+            hasWorkForHeatTick = tick;
+            hasWorkForHeat = wouldRunIfHeated();
+        }
+        return hasWorkForHeat;
+    }
+
+    /** The uncached answer behind {@link #hasWorkForHeat()}, cheapest test first. */
+    private boolean wouldRunIfHeated() {
+        ArrayList<DistillationOutputBlockEntity> outputs = getOutputs();
+        if (outputs.isEmpty())
+            return false;
+        if (!(level.getBlockEntity(getBlockPos().relative(getFacing(getBlockState()).getOpposite()))
+                instanceof SteelTankBlockEntity be))
+            return false;
+        return towerCanHoldOutputs(be, outputs.size()) && getMatchingRecipes() != null;
+    }
+
+    /**
+     * Whether the tank behind this controller is big enough for that many outputs: two blocks of
+     * height each, and at least two blocks wide once there are more than three of them. Shared by
+     * {@link #manageRecipe()} and {@link #hasWorkForHeat()} so a tower cannot burn fuel for a shape it
+     * will refuse to run in.
+     *
+     * <p>Resolved from whichever tank block sits behind the controller, as {@link #manageRecipe()}
+     * has always done: the width rule is unconditional on a footprint block, and a footprint block
+     * whose controller has gone missing is let through.
+     */
+    private boolean towerCanHoldOutputs(SteelTankBlockEntity tank, int outputCount) {
+        if (tank.isController())
+            return tank.getHeight() >= outputCount * 2
+                    && (((FluidTankBlockEntityAccessor) tank).tfmg$getWidth() >= 2 || outputCount <= 3);
+        SteelTankBlockEntity controller = tank.getControllerBE();
+        if (controller == null)
+            return true;
+        return controller.getHeight() >= outputCount * 2
+                && ((FluidTankBlockEntityAccessor) controller).tfmg$getWidth() >= 2;
     }
 
     protected DistillationRecipe getMatchingRecipes() {

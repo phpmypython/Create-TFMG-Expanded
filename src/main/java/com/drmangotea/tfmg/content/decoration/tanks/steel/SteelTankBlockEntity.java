@@ -46,6 +46,19 @@ public class SteelTankBlockEntity extends FluidTankBlockEntity implements IHaveG
     public int gaugeRotation = 0;
     public int activeHeat;
     public boolean isDistillationTower = false;
+    /**
+     * Where this tower's distillation controller block is, or null while it has none. Recorded by
+     * {@link #evaluate()} on the tank multiblock's controller, so anything asking about the tower can
+     * look the block entity up instead of scanning the footprint for it again.
+     *
+     * <p>Not written to NBT, because the flag it goes with is not either: {@link #read} restores
+     * {@link #isDistillationTower} from a client packet only, and on the server both are re-established
+     * when the distillation controller loads
+     * ({@code DistillationControllerBlockEntity.onLoad} -> {@code SteelTankBlock.updateTowerState} ->
+     * {@link #updateBoilerState()}), which runs {@link #evaluate()} again.
+     */
+    @Nullable
+    public BlockPos distillationControllerPos;
     private static final int SYNC_RATE = 8;
 
 
@@ -317,6 +330,7 @@ public class SteelTankBlockEntity extends FluidTankBlockEntity implements IHaveG
     public boolean evaluate() {
         boolean hadController = isDistillationTower;
         boolean foundController = false;
+        BlockPos foundControllerPos = null;
         BlockPos pos1 = controller == null ? getBlockPos() : controller;
         for (int yOffset = 0; yOffset < getControllerBE().height; yOffset++) {
             for (int xOffset = 0; xOffset < getControllerBE().width; xOffset++) {
@@ -333,6 +347,7 @@ public class SteelTankBlockEntity extends FluidTankBlockEntity implements IHaveG
 
                             if (!foundController) {
                                 foundController = true;
+                                foundControllerPos = attachedPos;
                             } else
                                 level.destroyBlock(attachedPos, true);
                         }
@@ -341,6 +356,7 @@ public class SteelTankBlockEntity extends FluidTankBlockEntity implements IHaveG
             }
         }
         isDistillationTower = foundController;
+        distillationControllerPos = foundControllerPos;
 
         return hadController != foundController;
     }

@@ -20,6 +20,7 @@
     "accessor.SequencedAssemblyRecipeAccessor",
     "accessor.SlidingDoorBlockEntityAccessor",
     "accessor.TankSegmentAccessor",
+    "compat.propulsion.SteelTankHeatConsumerMixin",
     "compat.propulsion.VatHeatConsumerMixin"
   ],
   "client": [
