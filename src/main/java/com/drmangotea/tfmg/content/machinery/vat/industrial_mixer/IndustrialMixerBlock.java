@@ -49,14 +49,31 @@ public class IndustrialMixerBlock extends KineticBlock implements IBE<Industrial
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if(level.getBlockEntity(pos) instanceof IndustrialMixerBlockEntity be){
             MixerMode mixerMode = be.mixerMode;
-            ItemStack stackInside = mixerMode.item;
+            ItemStack stackInside = mixerMode.stack();
             if(stack.is(stackInside.getItem()))
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-            if(be.setMixerMode(stack, true)) {
+            if(!stack.isEmpty() && be.setMixerMode(stack, true)) {
+                if (level.isClientSide)
+                    return ItemInteractionResult.SUCCESS;
 
-                player.setItemInHand(hand, mixerMode.item);
                 be.setMixerMode(stack, false);
+                if (!player.isCreative())
+                    stack.shrink(1);
+                if (!stackInside.isEmpty()) {
+                    if (player.getItemInHand(hand).isEmpty())
+                        player.setItemInHand(hand, stackInside);
+                    else
+                        player.getInventory().placeItemBackInInventory(stackInside);
+                }
+                return ItemInteractionResult.SUCCESS;
+            }
+            if (player.isShiftKeyDown() && stack.isEmpty()) {
+                if (level.isClientSide)
+                    return ItemInteractionResult.SUCCESS;
+
+                be.setMixerMode(MixerMode.NONE.name, false);
+                player.setItemInHand(hand, stackInside);
                 return ItemInteractionResult.SUCCESS;
             }
         }
