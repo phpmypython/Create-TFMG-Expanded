@@ -93,8 +93,8 @@ public class TFMGMixinPlugin implements IMixinConfigPlugin {
 			return true;
 
 		LOGGER.warn("Create Propulsion: Simulated is installed but no longer declares the heat contract"
-				+ " this build was compiled against ({}). Burner heating for the chemical vat is"
-				+ " disabled; everything else is unaffected.", problem);
+				+ " this build was compiled against ({}). Burner heating for the chemical vat and"
+				+ " the distillation tower is disabled; everything else is unaffected.", problem);
 		return false;
 	}
 
