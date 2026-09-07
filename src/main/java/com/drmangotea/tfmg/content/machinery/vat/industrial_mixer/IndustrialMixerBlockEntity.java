@@ -89,7 +89,7 @@ public class IndustrialMixerBlockEntity extends KineticBlockEntity implements IV
             return;
 
 
-        ItemEntity itemToDrop = new ItemEntity(level, getBlockPos().getX() + 0.5f, getBlockPos().getY() + 0.5f, getBlockPos().getZ() + 0.5f, mixerMode.item);
+        ItemEntity itemToDrop = new ItemEntity(level, getBlockPos().getX() + 0.5f, getBlockPos().getY() + 0.5f, getBlockPos().getZ() + 0.5f, mixerMode.stack());
 
         level.addFreshEntity(itemToDrop);
 
@@ -165,11 +165,19 @@ public class IndustrialMixerBlockEntity extends KineticBlockEntity implements IV
         MIXING("mixing", TFMGItems.MIXER_BLADE.asStack()),
         CENTRIFUGE("centrifuge", TFMGItems.CENTRIFUGE.asStack());
         public final String name;
-        public final ItemStack item;
+        private final ItemStack item;
 
         MixerMode(String name, ItemStack stack) {
             this.name = name;
             this.item = stack;
+        }
+
+        /**
+         * The part this mode is built from, as a fresh single item. Each constant holds one stack and must
+         * hand out copies of it: the instance itself picks up the count of whatever inventory it ends up in.
+         */
+        public ItemStack stack() {
+            return item.copyWithCount(1);
         }
     }
 }
