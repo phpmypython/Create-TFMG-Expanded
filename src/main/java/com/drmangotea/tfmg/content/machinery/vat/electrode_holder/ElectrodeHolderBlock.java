@@ -32,8 +32,18 @@ public class ElectrodeHolderBlock extends Block implements IBE<ElectrodeHolderBl
             if(stack.is(stackInside.getItem()))
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             if(be.setElectrode(stack, true)) {
-                player.setItemInHand(hand, electrode.getStack());
+                if (level.isClientSide)
+                    return ItemInteractionResult.SUCCESS;
+
                 be.setElectrode(stack, false);
+                if (!player.isCreative())
+                    stack.shrink(1);
+                if (!stackInside.isEmpty()) {
+                    if (player.getItemInHand(hand).isEmpty())
+                        player.setItemInHand(hand, stackInside);
+                    else
+                        player.getInventory().placeItemBackInInventory(stackInside);
+                }
                 return ItemInteractionResult.SUCCESS;
             }
             if (player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
